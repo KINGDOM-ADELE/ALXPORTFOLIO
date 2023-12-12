@@ -1,0 +1,32 @@
+.usercontent h2{
+    text-align: center;
+}
+
+.searchinput{
+    width: 100%;
+}
+
+.margin5pxRight{
+    margin-right: 5px;
+}
+
+.margin5pxleft{
+    margin-left: 5px;
+}
+
+.searchResults{
+    background-color: #22b3d3;
+}
+
+.cursorPointer{
+    cursor: pointer;
+}
+
+.cursorText{
+    cursor: text;
+}
+
+.blocMe{
+    display: block;
+}
+

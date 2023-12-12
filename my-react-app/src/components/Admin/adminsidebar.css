@@ -1,0 +1,150 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #1ba9c9;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar li {
+    margin: 10px 0;
+  }
+  
+  .linkNot, .sidebar a {
+    display: block;
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.4s ease-in-out;
+    font: 1rem monospace;
+    font-weight: 900;
+  }
+
+  .sidebar a {
+    cursor: pointer;
+  }
+  
+  .sidebar a:hover {
+    background-color: #07cefa;
+  }
+  
+.dashicon{
+    vertical-align: middle; 
+    margin-top: -1.5vh;
+    cursor: pointer;
+
+    
+ }
+
+ .dashicon:hover {
+  color: rgb(255, 0, 0)
+ }
+
+ .dashicon:active {
+  color: rgb(255, 0, 0)
+ }
+
+ #dash:hover {
+  background-color:#1ba9c9;
+ }
+
+ .dash span {
+    font: 1.4rem cursive;
+    padding: 1px;
+ }
+
+.notifyCounts {
+  color: rgb(35,255,27);
+  width: 100%;
+}
+
+ .AdminSideBareScroll {
+  height: 60vh;
+  overflow-y: scroll;
+  border-top: 1px solid #176f83;
+  border-bottom: 1px solid #176f83;
+  /* scrollbar-width: thin; */
+  /* scrollbar-color: thumbcolor backgroundcolor; */
+  /* scrollbar-color: black transparent; */
+}
+
+.AdminSideBareScroll::-webkit-scrollbar{
+  width: 2px;
+
+}
+.AdminSideBareScroll::-webkit-scrollbar-track{
+  width: 2px;
+  border-radius: 2px;
+  background-color: aqua;
+}
+.AdminSideBareScroll::-webkit-slider-thumb{
+  width: 4px;
+  border-radius: 2px;
+  background-color: #fff;
+}
+
+.deletedChild{
+  background-color: #FF2626;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.main_flex_container .centerMe .select-input-box {
+  background-color: #f9f8f8;
+
+}
+
+
+/* YourComponent.css */
+
+.message-container {
+  width: 100%;
+  max-width: 700px; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message-container p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.message-container span {
+  font-size: 14px;
+  color: #888;
+  margin-top: 8px;
+  display: block;
+}
+
+.message-container button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.message-container button:hover {
+  background-color: #0056b3;
+}
+

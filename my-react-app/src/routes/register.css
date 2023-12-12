@@ -1,0 +1,237 @@
+.regbody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url(../assets/img2.png);
+  background-size: cover;
+}
+
+.regform h2 {
+  text-align: center;
+  font: 2rem cursive;
+  font-weight: bold;
+  color: #aca6a6;
+}
+
+
+.wrapper, .regwrapper {
+  padding: 2rem;
+  margin: 2rem 0 3rem 0;
+  position: relative;
+  width: 90%; 
+  height: auto;
+  background: transparent;
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 27px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  flex-direction: column; 
+}
+
+.wrapper {
+  max-width: 400px;
+}
+.regwrapper {
+  max-width: 600px;
+}
+
+.wrapper .form, .regwrapper .form {
+  width: 100%;
+  padding: 40px;
+}
+
+.regform h2 {
+  font: 2rem cursive;
+  margin: 1rem;
+}
+
+.input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border-bottom: 2px solid rgb(78, 78, 78);
+  margin: 30px 0;
+}
+
+.input-box label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: rgba(0, 0, 0, 0.8);
+
+  font: 1rem monospace;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label,
+.input-box textarea:focus ~ label,
+.input-box textarea:valid ~ label
+ {
+  top: -5px;
+}
+
+.input-box input, .input-box textarea{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font: 0.9rem cursive;
+  font-weight: 600;
+  /* color: rgb(180, 180, 180); */
+  color: rgba(255, 254, 254, 0.8);
+
+  padding: 0 35px 0 5px;
+}
+
+
+ 
+
+.remember {
+  font-size: 0.9em;
+  font-weight: 500;
+  margin: -15px 0 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.remember a {
+  color: #4d641f;
+  text-decoration: none;
+}
+
+.remember a:hover {
+  text-decoration: underline;
+}
+
+.butn {
+  width: 100%;
+  height: 45px;
+  background: #27641f;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  color: rgb(134, 134, 134);
+  font: 1rem cursive;
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.viewbutn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  height: 45px;
+  background: #27641f;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  color: rgb(134, 134, 134);
+  font: 1rem cursive;
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.viewbutn:hover, .butn:hover {
+  background-color: #183614;
+  color: white;
+}
+
+.butn:active {
+  background-color: rgb(47, 32, 5);
+  border-radius: 1.5rem;
+}
+
+.no-account {
+  margin: 6px;
+  font: 1rem cursive;
+}
+
+.no-account a {
+  font-weight: 900;
+  color: rgb(240, 239, 239);
+  text-decoration: none;
+}
+
+.firstrow {
+  margin: 0 0 2rem 0; 
+}
+
+.secondrow {
+  margin: 0 0 2rem 0; 
+}
+
+
+.select-input-box select {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  border: 1px solid #666565;
+  border-radius: 4px;
+  background-color: #8c8b8b;
+  transition: border-color 0.3s ease;
+}
+
+.select-input-box2 select {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  border: 1px solid #e6e3e3;
+  border-radius: 4px;
+  background-color: #e6e3e3;
+  transition: border-color 0.3s ease;
+}
+
+/* Styling for select input on focus */
+.select-input-box select:focus {
+  outline: none;
+  border-color: #1490f6;
+}
+
+/* Styling for select input when disabled */
+.select-input-box select:disabled {
+  background-color: #f9f9f9;
+  cursor: not-allowed;
+}
+
+
+.topicInmput{
+  width: 100%;
+  height: 45px;
+
+
+}
+
+
+@media (max-width: 600px) {
+  .regwrapper {
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    padding: 1rem;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .input-box,
+  .butn {
+    width: 100%;
+  }
+
+  .input-box label,
+  .input-box input,
+  .butn {
+    font-size: 1rem;
+  }
+}

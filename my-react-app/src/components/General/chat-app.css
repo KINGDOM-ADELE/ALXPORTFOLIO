@@ -1,0 +1,223 @@
+/* chat-app.css */
+
+/* Global reset for default styles */
+body, h1, h2, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Main container for the chat app */
+.chat-app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Main content container */
+.chat-app-content {
+  flex: 1;
+  width: 100%;
+  max-width: 800px;
+  padding: 0 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+.chat-app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(45deg, #4CAF50, #2196F3);
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  border-radius: 5px 5px 0 0;
+}
+
+.centerTopic {
+  margin: 0 auto;
+  font-size: 1.2rem;
+}
+
+/* Chat Messages Container */
+.chat-messages {
+  flex: 1;
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 10px 10px 28px 10px;
+  background-color: #f0f0f0;
+  border-radius: 0 0 5px 5px;
+  height: calc(100vh - 136px); /* Adjust the height to take 90% of the viewport minus header and post form heights */
+}
+
+.message-timestamp {
+  font-size: 12px; /* Adjust the font size as needed */
+  color: #888; /* You can choose your desired color */
+  margin-top: 4px; /* Adjust the margin top as needed */
+}
+
+/* User Message Styles */
+.user-message {
+  background-color: #C8E6C9; /* Light green background */
+  color: #333; /* Text color for user's messages */
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 10px 10px 0 10px; /* Rounded corners on the right side */
+  float: right; /* Align user's messages to the right */
+  clear: both; /* Ensure messages don't overlap */
+  max-width: 70%; /* Limit message width to avoid excessive line lengths */
+  overflow: hidden; /* Hide overflowing content */
+}
+
+/* Other User Message Styles */
+.other-user-message {
+  background-color: #E0E0E0; /* Light gray background */
+  color: #333; /* Text color for user's messages */
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 10px 10px 10px 0; /* Rounded corners on the left side */
+  float: left; /* Align user's messages to the left */
+  clear: both; /* Ensure messages don't overlap */
+  max-width: 70%; /* Limit message width to avoid excessive line lengths */
+  overflow: hidden; /* Hide overflowing content */
+}
+
+/* User Message Styles */
+.user-message {
+  background-color: #C8E6C9; /* Light green background */
+  color: #333; /* Text color for user's messages */
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 10px 10px 0 10px; /* Rounded corners on the right side */
+  float: right; /* Align user's messages to the right */
+  clear: both; /* Ensure messages don't overlap */
+  max-width: 70%; /* Limit message width to avoid excessive line lengths */
+}
+
+/* Other User Message Styles */
+.other-user-message {
+  background-color: #E0E0E0; /* Light gray background */
+  color: #333; /* Text color for user's messages */
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 10px 10px 10px 0; /* Rounded corners on the left side */
+  float: left; /* Align user's messages to the left */
+  clear: both; /* Ensure messages don't overlap */
+  max-width: 70%; /* Limit message width to avoid excessive line lengths */
+}
+
+
+/* Add this CSS for images within message files */
+.message-files img {
+  max-width: 100%; /* Ensure images don't exceed the container width */
+  height: auto; /* Maintain the image's aspect ratio */
+}
+
+.message-files video {
+  max-width: 100%; /* Ensure videos don't exceed the container width */
+  height: auto; /* Maintain the video's aspect ratio */
+}
+
+/* Post Form Styles */
+.post-form {
+  background-color: #fff;
+  /* padding: 10px; */
+  border-top: 1px solid #ccc;
+  display: flex;
+  flex-direction: column; /* Change flex direction to column */
+}
+
+/* Flex container for form elements */
+.post-form-flex-container {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Expand to full width of the post form */
+  justify-content: space-between; /* Distribute space evenly between elements */
+  flex-direction: row; /* Change flex direction to row */
+}
+
+/* Post Form Styles */
+.post-form {
+  background-color: #fff;
+  /* padding: 10px; */
+  border-top: 1px solid #ccc;
+}
+
+/* Flex container for form elements */
+.chatPostDiv {
+  display: flex; /* Make chatPostDiv a flex container */
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f0f0f0; /* Background color for chatPostDiv */
+  padding: 2px;
+  border-radius: 0 0 5px 5px; /* Rounded corners on the bottom */
+}
+
+/* Textarea styles */
+.post-textarea {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px;
+  resize: none;
+  margin-right: 2px;
+  margin-left: 2px;
+  width: 100%; /* Expand to fill available space */
+  min-height: 50px; /* Set a minimum height for the textarea */
+}
+
+/* File Upload Styles */
+.file-upload {
+  display: inline-block;
+  /* padding: 10px; */
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1; /* Equal width for all elements in the row */
+}
+
+/* Style the file input to be hidden */
+.file-upload input[type="file"] {
+  display: none;
+}
+
+/* Style the file input label (optional) */
+.file-upload-label {
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Submit Button Styles */
+/* Update your CSS */
+.post-button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  flex: 1; /* Equal width for all elements in the row */
+  display: flex; /* Make the button a flex container */
+  align-items: center; /* Center the content vertically */
+}
+
+
+.post-button:hover {
+  background-color: #45a049;
+}
+/* Responsive Styles for Smaller Screens */
+@media (max-width: 768px) {
+  .chat-app-content {
+    padding: 0px 10px 0px 10px;
+  }
+  .centerTopic {
+    font-size: 1.5rem;
+  }
+}

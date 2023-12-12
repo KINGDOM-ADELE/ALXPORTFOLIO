@@ -1,0 +1,227 @@
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profilesidebar {
+  order: 1; /* Displayed first on desktop view */
+  margin-right: 20px;
+}
+
+.profilemain {
+  order: 2; /* Displayed second on desktop view */
+}
+
+
+.sonx p,  .myspans, .profilemain p{
+  background-color: rgb(241, 241, 241);
+  border-radius: 6px;
+  padding: 1rem 1rem 1rem 1rem;
+  width: 100%;
+
+  /* cursor: pointer; */
+  margin: 20px;
+  box-sizing: border-box;
+}
+
+.sonx li{
+ list-style: none;
+ justify-content: space-between;
+}
+
+
+ p span, .profilemain p span {
+  color: #177489;
+  width: 100%;
+}
+
+.myspans{
+  margin: 20px 20px;
+}
+
+
+
+/* //CCC FLEX*/
+/* BLOCK 2 */
+.fatherx
+{
+display: flex;
+flex-grow: 1;
+}
+.sonx{
+  /* background-color: aqua; */
+	  display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;	
+  margin: 0px 20px;
+}
+
+
+.son1x
+{
+flex-grow:1;
+flex-basis:320px ;
+padding: 0;
+}
+
+.son1x div
+{
+display: flex;
+flex-grow:1;
+flex-basis:320px ;
+padding: 8px;
+background-color: rgb(241, 241, 241);
+border-radius: 6px;
+justify-content: center;
+align-items: center;
+}
+
+.son2x
+{
+	flex-grow: 10;
+	flex-basis:350px ;
+}
+
+.son3x
+{
+	flex-basis:100% ;
+	flex-grow: 1;
+}
+
+/* //CCC FLEX ENDS */
+.Overideflexdirection1Tocol, #Overideflexdirection1Tocol, #Overideflexdirection2Tocol, #Overideflexdirection3Tocol {
+  flex-direction: column;
+}
+
+.Overideflexdirection1ToRow, #Overideflexdirection1ToRow, #Overideflexdirection2ToRow, #Overideflexdirection3ToRow {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  justify-content: space-between;
+}
+
+#Overideflexdirection1ToRow li{
+  justify-content: center;
+  align-items: center;
+}
+
+#OverideProfilebox{
+  padding: 0;
+  margin: 0;
+}
+
+
+
+
+.userprofileImg{
+  max-width: 320px;
+  aspect-ratio: 1/1;
+  width: 100%;
+  border-radius: 50%;
+  background: rgb(0, 0, 0);
+  /* margin: 7px; */
+} 
+
+
+.myheader #span{
+ float: right;
+ /* cursor: pointer; */
+} 
+
+.myheader #span a:active{
+  color: red;
+}
+
+.myheader #span a:hover{
+  color: green;
+}
+
+/* .myheader #span a{
+  text-decoration: none;
+  color: rgb(132, 132, 132);
+  
+} */
+
+/* .insidenav {
+  background-color: aqua;
+} */
+
+/* .profileicon {
+  vertical-align: bottom;
+} */
+
+/* .navBarImg:hover
+{
+  border: 1px solid #5EC852;
+}  */
+
+/*
+*/
+
+
+.flexedContainer {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	min-height: 200px;
+	flex-flow: 1;
+}
+
+.centerMe {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	flex-flow: 1;
+}
+
+.mobileWidth, #mobileWidth {
+  max-width: 800px;
+}
+
+.mobileWidth .input-box input, #mobileWidth .input-box input, #mobileWidth .input-box textarea{
+  color: #000;
+}
+
+
+
+.gridContainer{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(50px, auto);
+  grid-gap: 20px;
+  max-width: 100%;
+  /* margin: 0 auto; */
+  margin: 0 20px;
+  box-sizing: border-box;
+}
+
+.gridContainer div{
+  padding: 20px;
+  border-radius: 6px;
+  background-color: rgb(241, 241, 241);
+}
+
+.mygridspans{
+  grid-column: 1/3;
+  background-color: rgb(241, 241, 241);
+
+}
+
+/* Media query for screens with a maximum width of 768px (adjust as needed) */
+@media (max-width: 768px) {
+.gridContainer{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: minmax(50px, auto);
+  /* grid-gap: 25px; */
+  max-width: 100%;
+  margin: 0 20px;
+  box-sizing: border-box;
+}
+
+.mygridspans{
+  grid-column: 1/2;
+}
+}

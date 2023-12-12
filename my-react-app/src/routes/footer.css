@@ -1,0 +1,41 @@
+
+.footer {
+    color: white;
+    background-color: black;
+    padding: 1rem;
+  }
+  
+  .footer .text {
+    text-align: center;
+    font: 0.7rem cursive;
+  }
+  
+
+  .footer a {
+    text-decoration: none;
+    color: #177489
+  }
+
+  #contactlink {
+    color: #1ba9c9;
+  }
+
+  #contactlink:hover, .footer a:hover {
+    color: #28cdf2;
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 767px) {
+    /* Styles for screens with a maximum width of 767px */
+  
+    .footer {
+      padding: 0.5rem;
+    }
+  
+    .footer .text {
+      font-size: 0.6rem;
+    }
+  }
+  
+
+

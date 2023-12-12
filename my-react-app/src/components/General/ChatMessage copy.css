@@ -1,0 +1,23 @@
+/* ChatMessage.css */
+.user-message {
+    background-color: #C8E6C9;
+    color: #333;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px 10px 10px 0;
+    float: left;
+    clear: both;
+    max-width: 70%;
+  }
+  
+  .other-user-message {
+    background-color: #E0E0E0;
+    color: #333;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px 10px 0 10px;
+    float: right;
+    clear: both;
+    max-width: 70%;
+  }
+  

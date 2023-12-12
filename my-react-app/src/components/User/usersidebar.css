@@ -1,0 +1,75 @@
+.usersidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #1ba9c9;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(-100%);
+  }
+  
+  .usersidebar.open {
+    transform: translateX(0);
+  }
+  
+  .usersidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .usersidebar li {
+    margin: 10px 0;
+  }
+  
+  .usersidebar a {
+    display: block;
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.4s ease-in-out;
+    font: 1rem monospace;
+    font-weight: 900;
+    cursor: pointer;
+
+  }
+  
+  .usersidebar a:hover {
+    background-color: #22b3d3;
+  }
+  
+.userdashicon{
+    vertical-align: middle; 
+    margin-top: -1.5vh;
+    
+ }
+
+ .userdashicon:hover {
+  color: #c62323;
+ }
+
+ .dashicon:active {
+  color: #23a9c7;
+ }
+
+ #userdash:hover {
+  background-color: #26badc;
+ }
+
+ .userdashicon span:hover {
+    color:#177489;
+ }
+
+ .UserSideBareScroll {
+  height: 60vh;
+  overflow-y: scroll;
+  border-top: 1px solid #177489;
+  border-bottom: 1px solid #177489;
+}
+
+.UserSideBareScroll::-webkit-scrollbar{
+  width: 0px;
+}
+
+ 

@@ -1,0 +1,53 @@
+.toggle {
+    /* display: inline-block; */
+    color: white;
+    
+ }
+
+
+ .adminnavHeader, .usernavHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: #177489;
+    /*  */
+    position: sticky;
+    top: 0;
+    z-index: 100; 
+}
+
+.adminnavHeader li, .usernavHeader li{
+    display: inline-block;
+}
+
+ .toggle .navicon:hover {
+     color: red;
+ }
+ 
+ .gobackpad{
+    padding-right: 10px;
+ }
+ 
+
+ .navBarImg{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+	background: rgb(0, 0, 0);
+}
+
+
+.userbodyicon, .usernavicon{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+
+.navBarImg:hover, .usernavicon:hover, .userbodyicon:hover
+{
+	border: 1px solid #28cdf2;
+	background: #28cdf2;
+
+}

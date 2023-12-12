@@ -1,0 +1,423 @@
+API_base_url = http://127.0.0.1:7300/
+
+###
+### USERS
+###
+# signup
+# methods: post
+{{API_base_url}}api/v1/users/signup
+
+# login
+# methods: post
+{{API_base_url}}api/v1/users/login
+
+
+# Admin to approve user
+# methods: patch/put
+{{API_base_url}}api/v1/users/approve/:_id
+{{API_base_url}}api/v1/users/approve/646f9e5c56bebdf78ed38a18
+
+
+# User add course
+# methods: patch/put
+{{API_base_url}}api/v1/users/addcourse/:_id
+{{API_base_url}}api/v1/users/addcourse/646f9e5c56bebdf78ed38a18
+
+
+# User remove course
+# methods: patch/put
+{{API_base_url}}api/v1/users/removecourse/:_id
+{{API_base_url}}api/v1/users/removecourse/646f9e5c56bebdf78ed38a18
+
+# logout All from all devices
+# methods: patch/put
+{{API_base_url}}api/v1/users/logoutall
+
+# User profile
+# The Bearer profile
+# methods: get
+{{API_base_url}}api/v1/users/myprofile
+
+# get all users and update mine
+# methods: get
+# put/patch for logged in user 
+{{API_base_url}}api/v1/users
+
+
+# Search user
+# methods: get
+{{API_base_url}}api/v1/users/searchuser?search=`${search}`
+
+# changed password for logged in user
+# methods: put/patch
+{{API_base_url}}api/v1/users/changepassword
+
+
+# get one user
+# methods: get
+{{API_base_url}}api/v1/users/:_id
+{{API_base_url}}api/v1/users/646cf8dced7c13012963967a
+
+
+# put/patch one user, restricted to admin
+# methods: put/patch
+{{API_base_url}}api/v1/users/:_id
+{{API_base_url}}api/v1/users/646cf8dced7c13012963967a
+
+# forgot password
+# methods: post
+{{API_base_url}}  
+
+# reset password
+# methods: patch
+{{API_base_url}}api/v1/users/resetpassword/:token
+{{API_base_url}}api/v1/users/resetpassword/f3a7b90365fcc8bcd85023def6dd830de5fb371811c3d713193873b1bab77b5a
+
+# admin aprrove user
+# methods: patch
+{{API_base_url}}api/v1/users/resetpassword/:_id
+{{API_base_url}}api/v1/users/approve/646f9e0456bebdf78ed38a16
+
+
+# admin set user status
+# methods: patch
+{{API_base_url}}api/v1/users/setuserstatus/:_id
+{{API_base_url}}api/v1/users/setuserstatus/646f9e0456bebdf78ed38a16
+
+
+# admin get ACTIVE STUDENTS
+# methods: get
+{{API_base_url}}api/v1/users?status=student
+
+
+# admin get DEFFERED DEFFERED
+# methods: get
+{{API_base_url}}api/v1/users?status=deffered
+
+
+# admin get GRADUATED STUDENTS
+# methods: get
+{{API_base_url}}api/v1/users?status=alumni
+
+
+# admin get MONTH'S REGISTRATIONS
+# methods: get
+{{API_base_url}}api/v1/users?month=Jun/2023
+
+
+# admin get MONTH'S PROSPECTS
+# methods: get
+{{API_base_url}}api/v1/enquiries?month=Jun/2023
+
+
+
+###
+### courseS
+###
+# course stats 
+# methods: get
+{{API_base_url}}api/v1/courses/course-stats
+
+# getAll/post courses
+# methods: get and post
+{{API_base_url}}api/v1/courses
+
+# getAll User sellected courses
+# methods: get
+{{API_base_url}}api/v1/courses/usercourses
+
+# highest rated
+# methods: get
+{{API_base_url}}api/v1/courses/highest-rated
+
+# getOne/put/patch/delete course
+# with course id
+# methods: get, put, patch
+{{API_base_url}}api/v1/courses/:_id
+{{API_base_url}}api/v1/courses/646b2ebe06fa59d06462a33e
+
+
+# get courses course
+# with course id array
+# methods: get
+{{API_base_url}}api/v1/courses/:_id
+{{API_base_url}}api/v1/courses/646b2ebe06fa59d06462a33e
+
+# Pagination serverside
+# methods: get
+{{API_base_url}}api/v1/courses?page=2&limit=2
+
+# sorting by fields
+# - means decendind order 
+# sort=-price is in decending order
+# methods: get
+{{API_base_url}}api/v1/courses?sort=-students,ratings
+
+# query by fields you want or the fields you dont want, there can be no mixup
+# by the fields you want
+# methods: get
+{{API_base_url}}api/v1/courses?fields=name,ratings,students
+# by the fields you dont want by adding negative to the fields
+# methods: get
+{{API_base_url}}api/v1/courses?fields=-name,-ratings
+
+# filter by aggregation
+# methods: get
+{{API_base_url}}api/v1/courses?alumni[gte]=10&students[gte]=90&ratings[lte]=7
+
+# filter by equality (ordinary filter)
+# methods: get
+{{API_base_url}}api/v1/courses?alumni=10&students=90&ratings=5
+
+
+
+###
+### RATINGS
+###
+
+# getAll/post ratings
+# methods: get and post
+{{API_base_url}}api/v1/ratings
+
+
+# highest rated
+# methods: get
+{{API_base_url}}api/v1/ratings/highest-rated
+
+
+# getOne/put/patch/delete rating
+# with rating id
+# methods: get, put, patch
+{{API_base_url}}api/v1/ratings/:_id
+{{API_base_url}}api/v1/ratings/646b2ebe06fa59d06462a33e
+
+
+# Pagination serverside
+# methods: get
+{{API_base_url}}api/v1/ratings?page=2&limit=2
+
+# sorting by fields
+# - means decendind order 
+# sort=-ratings is in decending order
+# methods: get
+{{API_base_url}}api/v1/ratings?sort=-ratings
+
+
+# query by fields you want or the fields you dont want, there can be no mixup
+# by the fields you want
+# methods: get
+{{API_base_url}}api/v1/ratings?fields=ratings
+# by the fields you dont want by adding negative to the fields
+# methods: get
+{{API_base_url}}api/v1/ratings?fields=-ratings
+
+
+# filter by aggregation
+# methods: get
+{{API_base_url}}api/v1/ratings?ratings[lte]=3
+
+
+# filter by equality (ordinary filter)
+# methods: get
+{{API_base_url}}api/v1/ratings?ratings=5 
+
+
+
+###
+### ENQUIRIES
+###
+
+# getAll/post enquiries
+# methods: get and post
+{{API_base_url}}api/v1/enquiries
+
+
+# getOne/put/patch/delete enquiry
+# with rating id
+# methods: get, put, patch
+{{API_base_url}}api/v1/enquiries/:_id
+{{API_base_url}}api/v1/enquiries/646b2ebe06fa59d06462a33e
+
+
+# Pagination serverside
+# methods: get
+{{API_base_url}}api/v1/enquiries?page=2&limit=2
+
+
+# Search user
+# methods: get
+{{API_base_url}}api/v1/enquiries/searchenquiries?search=`${search}`
+
+
+# sorting by fields
+# - means decendind order 
+# sort=-enquiries is in decending order
+# methods: get
+{{API_base_url}}api/v1/enquiries?sort=-stack,technology
+
+
+# query by fields you want or the fields you dont want, there can be no mixup
+# by the fields you want
+# methods: get
+{{API_base_url}}api/v1/enquiries?fields=stack,technology
+# by the fields you dont want by adding negative to the fields
+# methods: get
+{{API_base_url}}api/v1/enquiries?fields=-stack,-technology
+
+
+# filter by equality (ordinary filter)
+# methods: get
+{{API_base_url}}api/v1/enquiries?stack=MEAN&technology=javaScript,email=izzyking@gmail.com
+
+
+
+
+###
+### STATISTICS
+###
+
+# latest stats
+# methods: get
+{{API_base_url}}api/v1/stats/lateststats
+
+# getAll/post stats
+# methods: get 
+{{API_base_url}}api/v1/stats
+
+
+# getOne/delete stats
+# with stats id
+# methods: get, delete
+{{API_base_url}}api/v1/stats/:_id
+{{API_base_url}}api/v1/stats/646b2ebe06fa59d06462a33e
+
+
+# Pagination serverside
+# methods: get
+{{API_base_url}}api/v1/stats?page=2&limit=2
+
+
+
+###
+### USER FILES
+###
+
+# linkprofileimage
+# single file upload
+# methods: patch or put
+{{API_base_url}}api/v1/files/linkprofileimage
+
+# unlinkprofileimage
+# methods: patch or put
+{{API_base_url}}api/v1/files/unlinkprofileimage
+
+###
+### FEEDS
+###
+
+# getAll/post feeds
+# methods: get and post 
+{{API_base_url}}api/v1/feeds
+
+
+# getOne/delete/put/patch feeds
+# with feeds id
+# methods: get, put, patch, delete
+{{API_base_url}}api/v1/feeds/:_id
+{{API_base_url}}api/v1/feeds/646b2ebe06fa59d06462a33e
+
+
+###
+### SUPPORT
+###
+
+# getAll/post supports
+# methods: get and post 
+{{API_base_url}}api/v1/supports
+
+
+# getOne/delete/put/patch supports
+# with supports id
+# methods: get, put, patch, delete
+{{API_base_url}}api/v1/supports/:_id
+{{API_base_url}}api/v1/supports/646b2ebe06fa59d06462a33e
+
+# SUPPORTs FOT SUPPORT-TECKET CODE
+# methods: get
+{{API_base_url}}api/v1/supports?supportCode=46te4e4ebtb
+
+
+
+###
+### SUPPORT TICKETS
+###
+
+# post supporttickets
+# methods:  post 
+{{API_base_url}}api/v1/supporttickets
+
+
+# getAll supporttickets
+# methods: get
+# admin 
+{{API_base_url}}api/v1/supporttickets
+
+
+# getAll User supporttickets
+# methods: get
+{{API_base_url}}api/v1/supporttickets/user
+
+
+# getAll open supporttickets
+# methods: get
+# admin 
+{{API_base_url}}api/v1/supporttickets/open
+
+# getOne/delete/put/patch supporttickets
+# with supporttickets id
+# methods: get, put, patch, delete
+{{API_base_url}}api/v1/supporttickets/:_id
+{{API_base_url}}api/v1/supporttickets/646b2ebe06fa59d06462a33e
+
+# Open
+# methods: get
+{{API_base_url}}api/v1/supporttickets?status=open
+
+
+
+###
+### FEEDS
+###
+
+# getAll/post feeds
+# methods: get and post 
+{{API_base_url}}api/v1/feeds
+
+
+# getOne/delete/put/patch feeds
+# with supporttickets id
+# methods: get, put, patch, delete
+{{API_base_url}}api/v1/feeds/:_id
+{{API_base_url}}api/v1/feeds/646b2ebe06fa59d06462a33e
+
+
+
+
+###
+### CONTACT MESSAGES
+###
+
+# getAll/post contact message
+# methods: get and post 
+{{API_base_url}}/api/v1/contactmessages
+
+
+# getOne/delete contact messege
+# with contact messege id
+# methods: get, delete
+{{API_base_url}}api/v1/contactmessages/:_id
+{{API_base_url}}api/v1/contactmessages/646b2ebe06fa59d06462a33e
+
+# Open
+# methods: get
+{{API_base_url}}api/v1/contactmessages?status=open

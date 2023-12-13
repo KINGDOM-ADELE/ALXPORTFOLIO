@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "./static/css/main.3413ef60.css",
-    "main.js": "./static/js/main.2b023ea5.js",
+    "main.css": "./static/css/main.0c8c894d.css",
+    "main.js": "./static/js/main.fab82d10.js",
     "static/js/787.bc7d429a.chunk.js": "./static/js/787.bc7d429a.chunk.js",
-    "static/media/img2.png": "./static/media/img2.8ba5ca3e6c7ed2972ca9.png",
     "static/media/feeds.png": "./static/media/feeds.f37d2d709591dc2a5254.png",
     "static/media/User_profile.png": "./static/media/User_profile.fbdd32ae6d8ef19a357b.png",
     "static/media/prospects.png": "./static/media/prospects.048d64d69cf06111ddac.png",
     "static/media/courses.png": "./static/media/courses.815dea4113c9b7414014.png",
     "static/media/admin_landing.png": "./static/media/admin_landing.b476ced07cf1284b4709.png",
     "static/media/users-page.png": "./static/media/users-page.5e1f525ee51b86691fca.png",
-    "static/media/schoolmanlogo.png": "./static/media/schoolmanlogo.455f8db0984346a02b10.png",
+    "static/media/manager_app.logo.png": "./static/media/manager_app.logo.0d00e7f079d9f88fa95a.png",
+    "static/media/modern-school-building-10981274.jpg": "./static/media/modern-school-building-10981274.669f6bce1fdab1568c5b.jpg",
     "index.html": "./index.html",
-    "main.3413ef60.css.map": "./static/css/main.3413ef60.css.map",
-    "main.2b023ea5.js.map": "./static/js/main.2b023ea5.js.map",
+    "main.0c8c894d.css.map": "./static/css/main.0c8c894d.css.map",
+    "main.fab82d10.js.map": "./static/js/main.fab82d10.js.map",
     "787.bc7d429a.chunk.js.map": "./static/js/787.bc7d429a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3413ef60.css",
-    "static/js/main.2b023ea5.js"
+    "static/css/main.0c8c894d.css",
+    "static/js/main.fab82d10.js"
   ]
 }

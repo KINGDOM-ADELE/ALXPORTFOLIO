@@ -102,10 +102,10 @@ body::-webkit-scrollbar{
 .landing-page .intro-section {
   text-align: center;
   padding: 3rem;
-  background-image: url('./assets/img2.png'); /* Use forward slashes and a relative path */
+  background-image: url('./assets/modern-school-building-10981274.jpg'); /* Use forward slashes and a relative path */
   background-size: cover;
   background-position: center;
-  color: #fff;
+  color: #0056b3;
   position: relative; /* Position relative for absolute elements */
   animation: slide_in 2s ease-in-out; /* Apply slide_in animation */
 }

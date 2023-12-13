@@ -10,8 +10,7 @@ export function Footer() {
   return (
     <div className='footer'>
         <div className='text'>
-      DESIGNED AND DEVELOPED BY <a className='cursorPointer' target='_blank' rel="noreferrer"  href='https://www.linkedin.com/in/kingdom-adele-3aa04087'>KINGDOM ADELE</a>, ASSISTED BY <a className='cursorPointer' target='_blank' rel="noreferrer" href='https://www.linkedin.com/in/gift-ndimande-b5b970245/'>GIFT NDIMANDE</a> AND 
-       <a className='cursorPointer' target='_blank' rel="noreferrer" href='https://www.example.com'> KINI BIE' HONORE'</a>
+      DESIGNED AND DEVELOPED BY <a className='cursorPointer' target='_blank' rel="noreferrer"  href='https://www.linkedin.com/in/kingdom-adele-3aa04087'>KINGDOM ADELE</a>
       </div>
       <div className='text'>
       <Link className='cursorPointer' to='Contact' id='contactlink'>CONTACT US</Link>

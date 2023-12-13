@@ -23,7 +23,7 @@ function Header() {
         <a href="/">
           <img
             className="navBarImg cursorPointer"
-            src={require('../assets/schoolmanlogo.png')}
+            src={require('../assets/manager_app.logo.png')}
             alt="Logo"
           />
         </a>
@@ -36,7 +36,7 @@ function Header() {
         </ul>
       </nav>
       <a href="/home" className="btn">
-        Visit School&nbsp;Man
+        Visit Manager
       </a>
     </header>
   );

@@ -30,7 +30,7 @@ export function Home() {
     <div className="Home">
         <div className='Header'>
             <h5>Welcome</h5> 
-            <h2>SCHOOL-MAN</h2>
+            <h2> &nbsp;M A N A G E R</h2>
             <div className='link'><Link to="/login">Login
             <Icon icon="mdi:user-circle" className='icons'/></Link>
             </div>

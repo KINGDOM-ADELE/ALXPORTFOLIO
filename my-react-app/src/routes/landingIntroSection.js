@@ -4,7 +4,7 @@ function IntroSection() {
   return (
     <section id="intro" className="intro-section">
       <div className="intro-content">
-        <h1>SCHOOL MAN</h1>
+        <h1>MANAGER</h1>
         <p>Efficient in management</p>
       </div>
     </section>

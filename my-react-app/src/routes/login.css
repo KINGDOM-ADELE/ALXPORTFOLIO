@@ -3,7 +3,9 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url(../assets/img2.png);
+  /* background: url(../assets/img2.png); */
+  background: url(../assets/modern-school-building-10981274.jpg) no-repeat;
+
   background-size: cover;
   /* background-position: center; */
 }

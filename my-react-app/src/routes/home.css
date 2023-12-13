@@ -3,7 +3,9 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url(../assets/img2.png) no-repeat;
+  /* background: url(../assets/img2.png) no-repeat; */
+  background: url(../assets/modern-school-building-10981274.jpg) no-repeat;
+
   background-size: cover;
 }
 
@@ -12,7 +14,9 @@
   margin-left: 9vw;
   font-weight: 900;
   padding: 1rem;
-  color: rgb(255, 255, 255);
+
+  color:   #0056b3;
+  /* color: rgb(255, 255, 255); */
   background-position: center;
   cursor: pointer;
 }
@@ -20,6 +24,7 @@
 .Header h2 {
   margin-left: -7.7rem;
   margin-top: 1vh;
+  /* background-color: blue; */
 }
 
 .Header h6 {

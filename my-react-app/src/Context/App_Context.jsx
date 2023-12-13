@@ -23,7 +23,7 @@ export const AppContextProvider = (props) => {
 
   }
 
-    const APP_NAME = 'SCHOOL MAN'
+    const APP_NAME = 'MANAGER'
 
      const [messages, setMessages] = useState([]);
      const [ChartData, setChartData] = useState([]);

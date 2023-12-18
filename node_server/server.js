@@ -89,7 +89,7 @@ mongoose.connect(URL, {
 //db connection
 
 
-const port = process.env.PORT || 7300
+const port = process.env.PORT || 7200
 const serverName = "MrSoftTraining"
 const server = app.listen(port, () => {
     const host= server.address().address 

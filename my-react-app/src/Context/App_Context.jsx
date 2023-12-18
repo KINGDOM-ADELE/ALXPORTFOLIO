@@ -8,7 +8,7 @@ export const AppContextProvider = (props) => {
   let API_base_url
   if(process.env.TESTING_FOR_PRODUCTION === 'true' && process.env.NODE_ENV === "production"){
     // API_base_url = "http://127.0.0.1:7300/"
-    API_base_url = "http://localhost:7300/"
+    API_base_url = "http://localhost:7700/"
     console.log('API_base_url', API_base_url)
   }
   else if (process.env.NODE_ENV === 'production'){

@@ -36,6 +36,10 @@ const userSchema = new mongoose.Schema(
             // valuesOptions: ["HTML", "CSS", "JavaScript", "TypeScript"],
             // valuesOptions: ["done", "CSS", "JavaScript", "TypeScript"],
 
+        "Enrolled":  {type: Array}, // using array of objects to account for a situation where a user runs more than one course,[{courseCode: val, courseStatus: val}]
+            // valuesOptions: ["HTML", "CSS", "JavaScript", "TypeScript"],
+            // valuesOptions: ["done", "CSS", "JavaScript", "TypeScript"],
+            
         "gender": {type: String, enum: ['Male', 'Female'], default: 'Male'},
         // "passwordResetToken": {type: String, trim: true}, 
         // "passwordResetTokenExp": {type: Date, trim: true, select: false}, 

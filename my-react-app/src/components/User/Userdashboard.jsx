@@ -3,8 +3,10 @@ import './userdashboard.css';
 import { Usernavbar } from './Usernavbar';
 import { UserProfile } from './UserProfile';
 import { Feeds } from './Feeds';
-import { UserCourses } from './UserCourses';
+import { PrefferdCourses } from './PrefferdCourses';
 import { AddCourse } from './AddCourse';
+import { EnrollCourse } from './EnrollCourse';
+import { EnrolledCourses } from './EnrolledCourses';
 import { UserProfileUpdate } from './UserProfileUpdate';
 import { ChangeProfileImage } from '../General/Userimg';
 import { UserSupport } from './UserSupport';
@@ -77,9 +79,11 @@ export function Userdashboard({ formData }) {
         <Usernavbar />
         <Routes>
           <Route path="/userprofile" element={<UserProfile/>} />
-          <Route path="/usercourses" element={<UserCourses/>} />
+          <Route path="/prefferdcourses" element={<PrefferdCourses/>} />
           <Route path="/allcourses" element={<AllCourses/>} />
           <Route path="/addcourse" element={<AddCourse/>} />
+          <Route path="/enrollcourse" element={<EnrollCourse/>} />
+          <Route path="/enrolledcourses" element={<EnrolledCourses/>} />
           <Route path="/profileupdate" element={<UserProfileUpdate/>} />
           <Route path="/changeprofileimage" element={<ChangeProfileImage/>} />
           <Route path="/usersupport" element={<UserSupport/>} />

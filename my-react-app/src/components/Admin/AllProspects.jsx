@@ -29,15 +29,15 @@ const handleProcessData = (targetData) => {
   return(<>
     <div className=" myspans ">
   
-        <div class="flex_container9">
-          <div class="son9 son19">
+        <div className="flex_container9">
+          <div className="son9 son19">
               <p><strong>DATE:</strong> {data.created} </p>
               <p><em>ENQUIRER: </em></p>
               <p><strong>FULL NAME:</strong> {data.fullName} </p>
               <p><strong>Phone:</strong> <a target='_blank' rel="noreferrer"  href={'tel:'+data.enquirerPhone} >{data.enquirerPhone}</a></p>
               <p><strong>EMAIL:</strong> <a target='_blank' rel="noreferrer"  href={'mailto:'+data.enquirerEmail} >{data.enquirerEmail}</a> </p>
           </div>
-          <div class="son9 son29">
+          <div className="son9 son29">
               <p><em>ON BEHALF OF</em></p>
               <p><strong>NAME:</strong> {data.beneficiaryName} </p>
               <p><strong>RELATIONSHIP:</strong> {data.relationship} </p>
@@ -45,11 +45,11 @@ const handleProcessData = (targetData) => {
               <p><strong>EMAIL:</strong> <a target='_blank' rel="noreferrer"  href={'mailto:'+data.Email} >{data.Email}</a> </p>
           </div>
         </div>
-        <div class="flex_container9">
-          <div class="son9 son19">
+        <div className="flex_container9">
+          <div className="son9 son19">
               <p><strong>DESCRIPTION: </strong> {data.description}</p>
           </div>
-          <div class="son9 son29">
+          <div className="son9 son29">
               <p><strong>CONCLUSION: </strong> {data.conclusion} </p>
           </div>
         </div>

@@ -137,6 +137,36 @@ exports.getCoursesByIds = asyncErrorHandler(async (req, res, next) => {
     });
 });
 
+
+exports.getEnrolledCoursesByIds = asyncErrorHandler(async (req, res, next) => {
+
+    const testToken = req.headers.authorization
+    const decodedToken =  await GetUserDetailsFromHeader(testToken)
+
+    const user = await User.findById(decodedToken._id)
+    console.log('user.Courses', user.Enrolled)
+
+    const sanitizedCourseIds = user.Enrolled.map(id => HTMLspecialChars(id));
+    // Find courses by their IDs
+    const courses = await Course.find({ _id: { $in: sanitizedCourseIds } });
+    // Check if any of the courses were not found
+    if (courses.length !== sanitizedCourseIds.length) {
+        // Find the missing course IDs
+        const missingCourseIds = sanitizedCourseIds.filter(id => !courses.some(course => course._id == id));
+
+        const error = new CustomError(`Courses with IDs: ${missingCourseIds.join(', ')} not found`, 404);
+        // Return to prevent further execution of the rest of the codes
+        return next(error);
+    }
+
+    res.status(200).json({
+        status: 'success',
+        resource: 'courses',
+        count: courses.length,
+        data: courses,
+    });
+});
+
 exports.updateACourse = asyncErrorHandler(async (req, res, next) => {
         // const movie = await movie.find({_id: req.param._id})
     req.body = HTMLspecialChars(req.body)

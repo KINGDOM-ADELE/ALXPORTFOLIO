@@ -12,7 +12,7 @@ export const AppContextProvider = (props) => {
     console.log('API_base_url', API_base_url)
   }
   else if (process.env.NODE_ENV === 'production'){
-    API_base_url = "https://schoolman.onrender.com/"
+    API_base_url = "https://zenager.onrender.com/"
     console.log('API_base_url', API_base_url)
 
   }
@@ -23,7 +23,7 @@ export const AppContextProvider = (props) => {
 
   }
 
-    const APP_NAME = 'MANAGER'
+    const APP_NAME = 'ZENAGER'
 
      const [messages, setMessages] = useState([]);
      const [ChartData, setChartData] = useState([]);

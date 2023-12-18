@@ -650,6 +650,47 @@ exports.updateUser = asyncErrorHandler(async (req, res, next) => {
 })
 
 
+exports.enrollUserToCourse = asyncErrorHandler(async (req, res, next) => {
+    const testToken = req.headers.authorization
+    const decodedToken =  await GetUserDetailsFromHeader(testToken)
+
+    req.body = HTMLspecialChars(req.body)
+    const user = await User.findById(decodedToken._id)
+
+    if(!user){
+    const error = new CustomError(`User with ID: ${decodedToken._id} is not found`, 404)
+    next(error)
+    }
+
+    const course = await Course.findById(req.params._id)
+
+    if(!course){
+    const error = new CustomError(`course with ID: ${req.params._id} is not found`, 404)
+    next(error)
+    }
+
+
+//    if (array.includes(valueToFind)) {}   
+    if (user.Enrolled.includes(req.params._id)) {
+        // console.log('course already exist')
+    }else{
+        user.Enrolled.push(req.params._id)
+    }
+    await user.save({validateBeforeSave: false})
+
+
+        limitedUser = limitUserDetailsServeFields(user)
+
+        res.status(200).json({ 
+            status : "success",
+            resource : "user",
+            action: "patch",
+            lenght : user.length,
+            data : limitedUser
+        })  
+})
+
+
 exports.addUserCourse = asyncErrorHandler(async (req, res, next) => {
     const testToken = req.headers.authorization
     const decodedToken =  await GetUserDetailsFromHeader(testToken)

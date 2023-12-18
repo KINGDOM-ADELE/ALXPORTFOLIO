@@ -38,6 +38,10 @@ router.route('/addcourse/:_id')
     .put(authController.protect,authController.addUserCourse)
     .patch(authController.protect,authController.addUserCourse)
 
+router.route('/enrollcourse/:_id')
+    .put(authController.protect,authController.enrollUserToCourse)
+    .patch(authController.protect,authController.enrollUserToCourse)
+
 router.route('/removecourse/:_id')
     .put(authController.protect,authController.removeUserCourse)
     .patch(authController.protect,authController.removeUserCourse)

@@ -18,6 +18,8 @@ const courseSchema = new mongoose.Schema(
     
     "file": Object,
 
+    "cost": {type: Number, default: 0, trim: true}, 
+
     "venue": {type: String, required: [true, 'Please enter venue for course'], trim: true},
   
     "stack": {type: String, default: ['MERN'], trim: true},

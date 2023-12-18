@@ -30,6 +30,9 @@ router.route('/course-by-technology/:technology').get(authController.protect,cou
 router.route('/idsArray')
     .get(authController.protect,courseController.getCoursesByIds)
 
+router.route('/enrolledArray')
+    .get(authController.protect,courseController.getEnrolledCoursesByIds)
+
 router.route('/idsStrings')
     .get(authController.protect,courseController.getCoursesByIds)
 

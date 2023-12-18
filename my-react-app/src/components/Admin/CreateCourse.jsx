@@ -35,6 +35,7 @@ export function CreateCourse() {
     description: '',
     CourseMode: '',
     venue: '',
+    Cost: 0,
     stack: '', 
     Availability: ''
   });
@@ -176,6 +177,16 @@ export function CreateCourse() {
                         <label>Course Name*</label>
                     </div>
 
+                    <div className='input-box'>
+                            <input
+                            type='text'
+                            name='cost'
+                            value={myformData.Cost}
+                            onChange={handleChange}
+                            required
+                            />
+                            <label>Cost*</label>
+                        </div>
                 </div>
 
 

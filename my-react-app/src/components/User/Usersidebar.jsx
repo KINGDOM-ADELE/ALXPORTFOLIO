@@ -63,10 +63,17 @@ const handleLogout = () => {
         </li>
 
         <li>
-          <Link to="./usercourses" onClick={onClose}>
-            My-Courses
+          <Link to="./prefferdcourses" onClick={onClose}>
+            Prefferd-Courses
           </Link>
         </li>
+
+        <li>
+          <Link to="./enrolledcourses" onClick={onClose}>
+          Enrrolled-Courses
+          </Link>
+        </li>
+        
         
 
         <li>

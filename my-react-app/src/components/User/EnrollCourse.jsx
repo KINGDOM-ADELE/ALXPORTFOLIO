@@ -8,17 +8,18 @@ import {Link} from "react-router-dom"
 // import './myinfo.css'
 import '../General/myinfo.css'
 import { useNavigate } from 'react-router-dom';
-export function EditCourse() {
+
+
+export function EnrollCourse() {
   const { API_base_url, getStoredToken,  setPageTitle } = useContext(AppContext)
   const navigate = useNavigate();
 
-  
   useEffect(() => {
     if(!getStoredToken()){
       navigate(`/`)
     }
 
-    setPageTitle('EDIT COURSE')
+    setPageTitle('ENROLL COURSE')
     return () => {
     };
   }, [ setPageTitle, navigate, getStoredToken ]);
@@ -37,25 +38,21 @@ export function EditCourse() {
   
   const [isLoadingx, setIsLoadingx] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+
   const [myformData, setMyFormData] = useState({
     file: '',
     courseCode: '',
     courseName: '',
     description: '',
     CourseMode: '',
+    Cost: 0,
+    CardDetail: '',
     venue: '',
     stack: '', 
     Availability: ''
   });
 
-  const [selectedImage, setSelectedImage] = useState(null);
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    setSelectedImage(file);
-    // console.log('event.target.files[0]')
-    // console.log(event.target.files[0])
-  };
 
   const handleChange = (event) => {
     setMyFormData({...myformData, [event.target.name]: event.target.value });
@@ -67,6 +64,12 @@ export function EditCourse() {
     return () => {};
   }, [setPageTitle]);
 
+
+
+  let CourseImage = <svg xmlns="http://www.w3.org/2000/svg" width="170px"  viewBox="0 0 16 16"><path fill="currentColor" d="M1 2.828c.885-.37 2.154-.769 3.388-.893c1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493c-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752c1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81c-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02c1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877c1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/></svg>
+  if(myformData && myformData.filePath !== undefined){
+    CourseImage = <img width="170px" src={API_base_url+myformData.filePath} alt="Profile pixels" />
+  }
 
   const fetchData = async () => {
     let response
@@ -84,15 +87,16 @@ export function EditCourse() {
       const data = await response.json();
       if(data.status === 'success'){
         response = data.data
-        console.log('data.data')
-        console.log(data.data)
+        
+
         setMyFormData({
+          filePath: data.data.file.filePath,
           courseCode: data.data.courseCode,
           courseName: data.data.courseName,
           description: data.data.description,
           CourseMode: data.data.CourseMode,
-          venue: data.data.venue,
           Cost: data.data.cost,
+          venue: data.data.venue,
           stack: data.data.stack, 
           Availability: data.data.Availability
         });
@@ -106,7 +110,7 @@ export function EditCourse() {
     } catch (error) {
       // Handle any errors
       Swal.fire(error)
-      console.error('Request failed:', error);
+      // console.error('Request failed:', error);
     }
     return response
   }
@@ -140,21 +144,23 @@ export function EditCourse() {
 
 
     const formData = new FormData();
-    if (selectedImage !== null){ formData.append('file', selectedImage ); }
     formData.append('courseCode', myformData.courseCode);
     formData.append('courseName', myformData.courseName);
     formData.append('description', myformData.description);
     formData.append('CourseMode', myformData.CourseMode);
-    formData.append('Cost', myformData.Cost);
     formData.append('venue', myformData.venue);
     formData.append('stack', myformData.stack);
     formData.append('Availability', myformData.Availability);
     console.log('formData') 
     console.log(formData)
 
+
+    
+
+
     
     try {
-        const response = await fetch(`${API_base_url}api/v1/courses/${targetCourseId.current}`, {
+        const response = await fetch(`${API_base_url}api/v1/users/enrollcourse/${targetCourseId.current}`, {
             method: 'PATCH',
             headers: {
               // 'Content-Type': 'application/json',
@@ -165,9 +171,10 @@ export function EditCourse() {
 
           const data = await response.json();
           if(data.status === 'success'){
-            console.log('data.data')
-            console.log(data.data)
+            // console.log('data.data')
+            // console.log(data.data)
             Swal.fire('Course updated successfully');
+            navigate(`/user/prefferdcourses`)
           }
           else{
             Swal.fire('Course update failed');
@@ -179,14 +186,16 @@ export function EditCourse() {
     }
     setIsLoading(false);
   };
+  
+  
    
   return (<>
 
     <div className="just_a_container">
       <div className="main_flex_container ">
         <div className=" son3x myspans" id='Overideflexdirection1ToRow'>
-            <span  title='Back to courses'>
-              <Link to="/admin/allcourses"><svg xmlns="http://www.w3.org/2000/svg" className='userbodyicon' viewBox="0 0 24 24"><path fill="currentColor" d="M10.78 19.03a.75.75 0 0 1-1.06 0l-6.25-6.25a.75.75 0 0 1 0-1.06l6.25-6.25a.749.749 0 0 1 1.275.326a.749.749 0 0 1-.215.734L5.81 11.5h14.44a.75.75 0 0 1 0 1.5H5.81l4.97 4.97a.75.75 0 0 1 0 1.06Z"/></svg></Link>
+            <span  title='Back to prefferd courses'>
+              <Link to="/user/prefferdcourses"><svg xmlns="http://www.w3.org/2000/svg" className='userbodyicon' viewBox="0 0 24 24"><path fill="currentColor" d="M10.78 19.03a.75.75 0 0 1-1.06 0l-6.25-6.25a.75.75 0 0 1 0-1.06l6.25-6.25a.749.749 0 0 1 1.275.326a.749.749 0 0 1-.215.734L5.81 11.5h14.44a.75.75 0 0 1 0 1.5H5.81l4.97 4.97a.75.75 0 0 1 0 1.06Z"/></svg></Link>
             </span>
 
             <span onClick={refreshPage} title='Refresh'>
@@ -202,135 +211,45 @@ export function EditCourse() {
           <div className="flexedContainer myspans " id='Overideflexdirection1Tocol' >
               
             <div className=" regwrapper" >
-            <h3 className="centerMe ">ADMIN EDIT COURSE</h3>
+            <h3 className="centerMe ">ENROLL COURSE</h3>
+            <div className="flex_container9">
+            <div className="son9 son19">
+            { CourseImage }  
+
+            </div>
+            <div className="son9 son29">
+            <p><strong>CODE:</strong> {myformData.courseCode} </p>
+            <p><strong>NAME:</strong> {myformData.courseName} </p>
+            <p><strong>MODE:</strong> {myformData.CourseMode} </p>
+            <p><strong>VENUE:</strong> {myformData.venue} </p>
+            <p><strong>COST:</strong> {myformData.Cost} </p>
+            <p><strong>ACAILABILITY:</strong> {myformData.Availability} </p>
+
+            </div>
+          </div>
+          <p><strong>DESCRIPTION:</strong> {myformData.description} </p>
+          
                 
                 <form id="mobileWidth" onSubmit={handleSubmit}>
                     <div className='firstrow'>
 
-                      <label>Course Image</label>
-                      <div className='input-box'>
-                            <input
-                            type="file"
-                            name="file"
-                            onChange={handleImageUpload}
-                        
-                            />
-                        </div>
 
-
-                        <div className='input-box'>
-                            <input
-                            type='text'
-                            name='courseCode'
-                            value={myformData.courseCode}
-                            onChange={handleChange}
-                            required
-                            />
-                            <label>Course Code*</label>
-                        </div>
-
-                        <div className='input-box'>
-                            <input
-                            type='text'
-                            name='courseName'
-                            value={myformData.courseName}
-                            onChange={handleChange}
-                            required
-                            />
-                            <label>Course Name*</label>
-                        </div>
-
+                      
                         <div className='input-box'>
                             <input
                             type='text'
                             name='cost'
-                            value={myformData.Cost}
+                            value={myformData.CardDetail}
                             onChange={handleChange}
                             required
                             />
-                            <label>Cost*</label>
+
+                            <label>Card Detail (Simulating card payment) *</label>
                         </div>
 
                     </div>
 
 
-                    <div className='input-box'>
-                    <textarea
-                        name='description'
-                        value={myformData.description}
-                        onChange={handleChange}
-                        rows="4"
-                        required
-                        ></textarea>
-                    <label>description*</label>
-                    </div>
-
-                    <div className='select-input-box2'>
-                    <select
-                        name='CourseMode'
-                        value={myformData.CourseMode}
-                        onChange={handleChange}
-                        required
-                    >
-                        <option value=''>Select CourseMode</option>
-                        <option value='Online Full-time'>Online Full-time</option>
-                        <option value='Online Part-time'>Online Part-time</option>
-                        <option value='On-Site Full-time'>On-Site Full-time</option>
-                        <option value='On-Site Part-time'>On-Site Part-time</option>
-                    </select>
-                    </div>
-
-                    <div className='select-input-box2'>
-                    <select
-                        name='venue'
-                        value={myformData.venue}
-                        onChange={handleChange}
-                        required
-                    >
-                        <option value=''>Select venue</option>
-                        <option value='Online'>Online</option>
-                        <option value='MRsoft Technology Complex, Port Harcourt.'>MRsoft Technology Complex, Port Harcourt.</option>
-                    </select>
-                    </div>
-
-                    
-                    <div className='select-input-box2'>
-                    <select
-                        name='stack'
-                        value={myformData.stack}
-                        onChange={handleChange}
-                        required
-                    >
-                        <option value=''>Select stack</option>
-                        <option value='NONE'>NONE</option>
-                        <option value='WEB TRINITY AND REACT'>WEB TRINITY AND REACT</option>
-                        <option value='WEB TRINITY AND ANGULAR'>WEB TRINITY AND ANGULAR</option>
-                        <option value='WEB TRINITY AND VUE'>WEB TRINITY AND VUE</option>
-                        <option value='MEAN'>MEAN</option>
-                        <option value='MERN'>MERN</option>
-                        <option value='MERM'>MERM</option>
-                        <option value='LAMP'>LAMP</option>
-                        <option value='LEMP'>LEMP</option>
-                        <option value='BACK END WITH NODE'>BACK END WITH NODE</option>
-                        <option value='BACK END WITH PHP'>BACK END WITH PHP</option>
-                        <option value='BACK END WITH PYTHON'>BACK END WITH PYTHON</option>
-                        <option value='OTHERS'>OTHERS</option>
-
-                    </select>
-                    </div>
-
-                    <div className='select-input-box2'>
-                    <select
-                        name='Availability'
-                        value={myformData.Availability}
-                        onChange={handleChange}
-                        required
-                    >
-                        <option value=''>Select availability</option>
-                        <option value='available now'>Available now</option>
-                        <option value='pending'>Pending</option>
-                    </select>
-                    </div>
 
 
 
@@ -338,7 +257,7 @@ export function EditCourse() {
                     {isLoading ? (
                         <BeatLoader color='#ffffff' loading={isLoading} size={8} />
                     ) : (
-                        'Submit'
+                        'Pay'
                     )}
                     </button>
                 </form>

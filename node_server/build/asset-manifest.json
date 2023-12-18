@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.0c8c894d.css",
-    "main.js": "./static/js/main.fab82d10.js",
+    "main.css": "./static/css/main.5f6bbb1e.css",
+    "main.js": "./static/js/main.069d902f.js",
     "static/js/787.bc7d429a.chunk.js": "./static/js/787.bc7d429a.chunk.js",
     "static/media/feeds.png": "./static/media/feeds.f37d2d709591dc2a5254.png",
     "static/media/User_profile.png": "./static/media/User_profile.fbdd32ae6d8ef19a357b.png",
@@ -9,15 +9,15 @@
     "static/media/courses.png": "./static/media/courses.815dea4113c9b7414014.png",
     "static/media/admin_landing.png": "./static/media/admin_landing.b476ced07cf1284b4709.png",
     "static/media/users-page.png": "./static/media/users-page.5e1f525ee51b86691fca.png",
-    "static/media/manager_app.logo.png": "./static/media/manager_app.logo.0d00e7f079d9f88fa95a.png",
+    "static/media/zenager_logo.png": "./static/media/zenager_logo.9923da7d4422f4d553fe.png",
     "static/media/modern-school-building-10981274.jpg": "./static/media/modern-school-building-10981274.669f6bce1fdab1568c5b.jpg",
     "index.html": "./index.html",
-    "main.0c8c894d.css.map": "./static/css/main.0c8c894d.css.map",
-    "main.fab82d10.js.map": "./static/js/main.fab82d10.js.map",
+    "main.5f6bbb1e.css.map": "./static/css/main.5f6bbb1e.css.map",
+    "main.069d902f.js.map": "./static/js/main.069d902f.js.map",
     "787.bc7d429a.chunk.js.map": "./static/js/787.bc7d429a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0c8c894d.css",
-    "static/js/main.fab82d10.js"
+    "static/css/main.5f6bbb1e.css",
+    "static/js/main.069d902f.js"
   ]
 }

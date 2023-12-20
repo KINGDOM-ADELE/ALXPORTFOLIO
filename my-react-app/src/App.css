@@ -324,11 +324,18 @@ body::-webkit-scrollbar{
 /* Add more styles as needed for the video element */
 .landing-page .optional-video video {
   max-width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .myiframe{
-  width: 560px;
-  height: 315px;
+  margin: 20px;
+  max-width: 700px;
+  flex-flow: 1;
+  flex-basis: 500px;
+  max-height: 900x;
+  /* height: 315px; */
 }
 
 /* Media query for screens with a maximum width of 768px (adjust as needed) */
@@ -339,8 +346,10 @@ body::-webkit-scrollbar{
 
   .myiframe{
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
   }
+
+  
 
 }
 

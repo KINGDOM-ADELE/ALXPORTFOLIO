@@ -15,10 +15,10 @@ const sendEmail = async (option) => {
     })
 
     const Pro_transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: process.env.PROD_EMAIL_HOST,
         auth: {
-            user: process.env.Pro_EMAIL_USER,
-            pass: process.env.Pro_EMAIL_PASSWORD,
+            user: process.env.PROD_EMAIL_USER,
+            pass: process.env.PROD_EMAIL_Password,
         } 
       });
 

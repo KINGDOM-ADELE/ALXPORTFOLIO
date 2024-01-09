@@ -248,6 +248,7 @@ exports.protect = asyncErrorHandler(async (req, res, next) => {
 
     //allow user to access the route
     req.user = user // reqxxx
+    console.log(' req.user',  req.user)
     next()
 })
 

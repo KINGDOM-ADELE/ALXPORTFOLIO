@@ -71,7 +71,9 @@ app.use('/api/v1/contactmessages', contactMessageRouter)// mounting contact mess
 
     // Define a route to serve the "build/index.html" file as the default route
     app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'buildtemplates', 'index.html'));
+    // res.sendFile(path.join(__dirname, 'buildtemplates', 'index.html'));
+    res.sendFile(path.join(__dirname, 'buildtemplates', 'landing.html'));
+
     });
 
 //   //DEFAULT ROUTE (for all other routes that are not matched)

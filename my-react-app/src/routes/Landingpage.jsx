@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from './landingHeader';
-import IntroSection from './landingIntroSection';
-import FeatureSection from './landingFeatureSection';
-import FeatureSection2 from './landingFeatureSection2';
-import AboutSection from './landingAboutSection';
-import MyOptionalVideo from './landingOptionalVideo';
+import Header from './l_Header';
+import IntroSection from './l_IntroSection';
+import FeatureSection from './l_FeatureSection';
+import FeatureSection2 from './l_FeatureSection2';
+import AboutSection from './l_AboutSection';
+import MyOptionalVideo from './l_OptionalVideo';
 
 function Landingpage() {
   return (

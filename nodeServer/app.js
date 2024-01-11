@@ -65,14 +65,14 @@ app.use('/api/v1/contactmessages', contactMessageRouter)// mounting contact mess
 
 
     
-    app.use(express.static(path.join(__dirname, 'buildtemplates'))); // Serve static files from the "public" directory (React build files).
+    app.use(express.static(path.join(__dirname, 'build'))); // Serve static files from the "public" directory (React build files).
     app.use('/uploads', express.static(path.join(__dirname, 'uploads'))) // lets us access static files in the upload folder
   
 
     // Define a route to serve the "build/index.html" file as the default route
     app.get('/*', (req, res) => {
-    // res.sendFile(path.join(__dirname, 'buildtemplates', 'index.html'));
-    res.sendFile(path.join(__dirname, 'buildtemplates', 'landing.html'));
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+ 
 
     });
 

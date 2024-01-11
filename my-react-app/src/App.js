@@ -21,7 +21,6 @@ function App() {
     <AppContextProvider >
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />} />
           <Route path="home/" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="contact" element={<Contact />} />
@@ -30,6 +29,7 @@ function App() {
           <Route path="forgotpassword" element={<ForgotPassword />} />
           <Route path="admin/*" element={<Admin />} />
           <Route path="user/*" element={<User />} />
+          <Route path="" element={<Landing />} />
         </Routes>
         <Footer/>
       </BrowserRouter>

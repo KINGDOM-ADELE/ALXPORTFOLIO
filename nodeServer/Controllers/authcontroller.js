@@ -56,24 +56,61 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     // this link will be valid for 10 munutes.`
 
 
+    // const message = `<html><body>
+    // <p>
+    // Hi ${newUser.firstName} ${newUser.middleName} ${newUser.lastName},</p> 
+    
+    // We have recieved your new account.
+    // <p>
+    // Please use the link below to verify your email:
+    // </p>
+    
+    // <table align='center' ><tr><td  align='center' style='	color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'><b>${VerificationToken}</b>
+    //     </td></tr></table>
+    
+    // <p>
+    
+    // You can also click on 'verify email' below to verify your email.
+    // </p>
+    
+    // <table align='center' ><tr><td  align='center' style='	color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'><a href='${verifyUrl}'><b>VERIFY EMAIL</b></a>
+    //     </td></tr></table>
+    
+    // <p>
+    // For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    // </p>
+    
+    // WITH MRSOFT, </br>
+    // YOUR FUTURE AS A TECH ENGINEER IS BRIGHT.
+    
+    // <p>
+    // Thank you for chosing MRsoft.
+    // </p>
+    
+    // <p>
+    // ${req.protocol}://${HOST}
+    // </p>
+    // </body></html>"`
+
+
+
     const message = `<html><body>
     <p>
     Hi ${newUser.firstName} ${newUser.middleName} ${newUser.lastName},</p> 
     
-    We have recieved your new account.
+    We have received your new account.
     <p>
     Please use the link below to verify your email:
     </p>
     
-    <table align='center' ><tr><td  align='center' style='	color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'><b>${VerificationToken}</b>
+    <table align='center' ><tr><td  align='center' style='color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'><b>${VerificationToken}</b>
         </td></tr></table>
     
     <p>
-    
     You can also click on 'verify email' below to verify your email.
     </p>
     
-    <table align='center' ><tr><td  align='center' style='	color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'><a href='${verifyUrl}'><b>VERIFY EMAIL</b></a>
+    <table align='center' ><tr><td  align='center' style='color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'><a href='${verifyUrl}'><b>VERIFY EMAIL</b></a>
         </td></tr></table>
     
     <p>
@@ -84,14 +121,13 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     YOUR FUTURE AS A TECH ENGINEER IS BRIGHT.
     
     <p>
-    Thank you for chosing MRsoft.
+    Thank you for choosing MRsoft.
     </p>
     
     <p>
     ${req.protocol}://${HOST}
     </p>
-    </body></html>"`
-
+    </body></html>`;
 
 
     let emailverificationMessage;
@@ -102,7 +138,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
         try{
             await sendEmail({
                 email: newUser.email,
-                subject: "Password reset request",
+                subject: "Registration Successf",
                 message: message
             })
             emailverificationMessage = `Email verification mail has been sent to  ${newUser.email}, pleae veryfy your email address.`
@@ -142,6 +178,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
 
 
 exports.login = asyncErrorHandler(async (req, res, next) => {
+    console.log("loging in")
     req.body = HTMLspecialChars(req.body)
     // const { username, password } = req.body
     const email = req.body.email

@@ -40,6 +40,7 @@ const emailOptions = {
 
 
 //sending the mail
+console.log("SENDING EMAIL")
 await transporter.sendMail(emailOptions)
 
 }

@@ -117,6 +117,7 @@ export function Feeds() {
         throw Error('could not fetch the data for that resource, '+data.message)
       }
       
+      
     } catch (error) {
       // Handle any errors
       Swal.fire(error)

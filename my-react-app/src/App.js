@@ -20,6 +20,7 @@ function App() {
   return (
     <AppContextProvider >
       <BrowserRouter>
+      
         <Routes>
           <Route path="home/" element={<Home />} />
           <Route path="login" element={<Login />} />

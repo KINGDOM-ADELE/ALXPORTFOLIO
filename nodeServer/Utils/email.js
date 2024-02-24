@@ -35,7 +35,8 @@ const emailOptions = {
     from: 'MRSOFT SUPPORT<support@mrsoft_training.com>',
     to: option.email,
     subject: option.subject,
-    text: option.message 
+    // text: option.message
+    html: option.message
 }
 
 

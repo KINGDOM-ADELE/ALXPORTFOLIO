@@ -1,9 +1,13 @@
 //INPORT EXPRESS
 const express = require('express')
+
+
 const path = require('path')
 const bodyParserx = require('body-parser')
 let app = express()
 app.use(express.json())
+const ejs = require('ejs');
+app.set('view engine', 'ejs');
 
 // To support cors and allow us send and recieve data through url we use cors
 const cors = require('cors');

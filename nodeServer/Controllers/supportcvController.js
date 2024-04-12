@@ -123,7 +123,6 @@ exports.putSupportcv = asyncErrorHandler(async (req, res, next) => {
     })  
 })
 
-
 exports.deleteSupportcv = asyncErrorHandler(async (req, res, next) => {
     const supportcv = await Supportcv.findByIdAndDelete(req.params._id, req.body, {new: true, runValidators: true})
     if(!supportcv){

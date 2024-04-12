@@ -5,9 +5,7 @@ const router = express.Router()
  const authController = require('../Controllers/authcontroller')
  const upload = require('../Utils/filehandler')
 
- 
 // ROUTES CHAINING for supportcv
-
 
 router.route('/')
     .get(supportcvController.getSupportcv)

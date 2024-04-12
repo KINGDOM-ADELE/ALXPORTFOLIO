@@ -42,8 +42,6 @@ supportcvSchema.pre(/^find/, async function(next){
 }) 
 
 
-
-
 supportcvSchema.post(/^find/, async function(docs,next){
     // this here points to the corrent querry
     this.endTime = Date.now()
@@ -52,6 +50,7 @@ supportcvSchema.post(/^find/, async function(docs,next){
     fs.writeFileSync(logFile, content, {flag: 'a'},(err) => {
     })
     next()
+
 })
 
 

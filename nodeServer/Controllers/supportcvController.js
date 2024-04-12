@@ -69,6 +69,7 @@ exports.postSupportcv = asyncErrorHandler(async (req, res, next) => {
 })
 
 
+
 exports.getSupportcv = asyncErrorHandler(async (req, res, next) => {
     // const movie = await movie.find({_id: req.param._id})
     const supportcv = await Supportcv.findById(req.params._id)

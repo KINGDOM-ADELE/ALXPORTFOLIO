@@ -8,7 +8,7 @@ const router = express.Router()
 // ROUTES CHAINING for supportcv
 
 router.route('/')
-    .get(supportcvController.getSupportcv)
+    .get(supportcvController.getSupportcvs)
     .post(authController.filesTosupportcvsPath,upload.array('files'),supportcvController.postSupportcv) //allows multiple files uploads
 
 // router.route('/:_id')

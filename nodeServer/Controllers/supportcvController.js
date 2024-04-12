@@ -15,15 +15,18 @@ exports.getSupportcvs = asyncErrorHandler(async (req, res, next) => {
 
     let features = new ApiFeatures(Supportcv.find(), req.query).filter().sort().limitfields().limitfields2().paginate()
  
-    let supportcvs = await features.query
-    req.query.page && paginationCrossCheck(supportcvs.length)
+    let supportcv = await features.query
+
+    req.query.page && paginationCrossCheck(Supportcv.length)
+
 
     res.status(200).json({ 
         status : "success",
         resource : "supportcv",
-        lenght : supportcvs.length,
-        data : supportcvs
-       })  
+        action : "getAll",
+        lenght : supportcv.length,
+        data : supportcv
+    }) 
 })
 
 exports.getAllSupportcvsOn_ticket_id = asyncErrorHandler(async (req, res, next) => {
@@ -121,6 +124,8 @@ exports.putSupportcv = asyncErrorHandler(async (req, res, next) => {
         data : supportcv
     })  
 })
+
+
 
 exports.deleteSupportcv = asyncErrorHandler(async (req, res, next) => {
     const supportcv = await Supportcv.findByIdAndDelete(req.params._id, req.body, {new: true, runValidators: true})

@@ -1313,6 +1313,11 @@ exports.filesToSupportsPath = asyncErrorHandler(async (req, res, next) => {
     next()
   })
 
+exports.filesTosupportcvsPath = asyncErrorHandler(async (req, res, next) => {
+SetUploadsfilePathHandler(req, `./uploads/supportscv`)
+next()
+})
+
 exports.checkBrut = asyncErrorHandler(async (req, res, next) => {
     SetUploadsfilePathHandler(req, `./uploads/supports`)
     next()

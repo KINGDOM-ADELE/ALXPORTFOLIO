@@ -426,3 +426,4 @@ API_base_url = http://127.0.0.1:7300/
 # CV
 # methods: get
 {{API_base_url}}api/v1/supportscv
+https://zenager.onrender.com/api/v1/supportscv

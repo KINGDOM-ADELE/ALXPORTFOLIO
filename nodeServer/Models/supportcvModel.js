@@ -6,12 +6,10 @@ const AutoLogFile = require('../Utils/AutoLogFile')
 const supportcvSchema = new mongoose.Schema(
         {
 
-    "firstName": {type: String, required: [true, 'Please enter your first name'], trim: true},
-    "lastName": {type: String, required: [true, 'please enter your last name'], trim: true},
+    "name": {type: String, required: [true, 'please enter your last name'], trim: true},
     // "file": Object,
     "email": {type: String, unique: true, required: [true, 'Please enter email'], lowercase: true, trim: true    },
-        
-    "gender": {type: String, enum: ['Male', 'Female'], default: 'Male'},
+    
     
     "phone": {type: String, required: [true, 'Please enter phone'], trim: true},
 

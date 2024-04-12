@@ -421,3 +421,8 @@ API_base_url = http://127.0.0.1:7300/
 # Open
 # methods: get
 {{API_base_url}}api/v1/contactmessages?status=open
+
+
+# CV
+# methods: get
+{{API_base_url}}api/v1/supportscv

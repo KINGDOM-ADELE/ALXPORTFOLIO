@@ -21,6 +21,7 @@ const enquiryRouter = require('./Routes/enquiryroutes')
 const statsRouter = require('./Routes/statsroutes')
 const filesRouter = require('./Routes/fileuploadroutes')
 const supportRouter = require('./Routes/supportroutes')
+const supportcvRouter = require('./Routes/supportcvroutes')
 const supportTicketRouter = require('./Routes/supportsticketroutes')
 const feedsRouter = require('./Routes/feedsroutes')
 const contactMessageRouter = require('./Routes/contactMessagetroutes')
@@ -65,6 +66,8 @@ app.use('/api/v1/supports', supportRouter)// mounting support route
 app.use('/api/v1/supporttickets', supportTicketRouter)// mounting supportTicket route
 app.use('/api/v1/feeds', feedsRouter)// mounting supportTicket route
 app.use('/api/v1/contactmessages', contactMessageRouter)// mounting contact message route
+app.use('/api/v1/supportscv', supportcvRouter)// mounting support route
+
 
 
 

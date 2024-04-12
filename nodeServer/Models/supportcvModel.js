@@ -39,7 +39,9 @@ supportcvSchema.pre(/^find/, async function(next){
     this.find({releaseDate: {$lte: Date.now()}})
     this.startTime = Date.now()
     next()
-})
+}) 
+
+
 
 
 supportcvSchema.post(/^find/, async function(docs,next){

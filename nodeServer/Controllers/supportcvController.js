@@ -26,8 +26,6 @@ exports.getSupportcvs = asyncErrorHandler(async (req, res, next) => {
        })  
 })
 
-
-
 exports.getAllSupportcvsOn_ticket_id = asyncErrorHandler(async (req, res, next) => {
 
     const supportcv = await Supportcv.find({ supportcvTicketId: req.params._id });

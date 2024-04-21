@@ -1,12 +1,22 @@
 import React, { createContext, useState } from 'react'
+import PropTypes from 'prop-types';
 
 
 export const AppContext  = createContext(null);
 
 
 export const AppContextProvider = (props) => {
+  const { children } = props; // Destructure children from props
+
   let API_base_url
-  if(process.env.TESTING_FOR_PRODUCTION === 'true' && process.env.NODE_ENV === "production"){
+  let testProd = false // determines which base url that will be used on build with local testing
+  if(process.env.NODE_ENV === "production" && process.env.testProd === true ){
+    console.log('testProd', testProd)
+    // API_base_url = "http://127.0.0.1:7300/"
+    API_base_url = "http://localhost:7700/"
+    console.log('API_base_url', API_base_url)
+  }
+  else if(process.env.NODE_ENV === "production" && process.env.testProd === false){
     // API_base_url = "http://127.0.0.1:7300/"
     API_base_url = "http://localhost:7700/"
     console.log('API_base_url', API_base_url)
@@ -17,8 +27,7 @@ export const AppContextProvider = (props) => {
 
   }
   else{
-    API_base_url = "http://localhost:3000/"
-    // API_base_url = "http://127.0.0.1:3000/"
+    API_base_url = "http://localhost:7700/"
     console.log('API_base_url', API_base_url)
 
   }
@@ -142,9 +151,14 @@ const contextValue = {API_base_url, handleAlreadyLoggedIn, getStoredToken, getSt
   newSupportCount, setNewSupportCount, newSupport, setNewSupport, newContactMessage, setNewContactMessage, messages, setMessages, formatTimestamp
 }
 
-  return (
-    <AppContext.Provider value={ contextValue } >
-        { props.children }
-    </AppContext.Provider> 
-  )
+return (
+  <AppContext.Provider value={ contextValue } >
+      { children }
+  </AppContext.Provider> 
+)
 }
+
+// PropTypes validation for AppContextProvider props
+AppContextProvider.propTypes = {
+children: PropTypes.node.isRequired, // Validate children prop
+};

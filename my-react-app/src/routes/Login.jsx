@@ -1,8 +1,8 @@
 import './login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import React, { useContext, useEffect, useState } from 'react';
 import { BeatLoader } from 'react-spinners';
+import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../Context/App_Context';
 
 
@@ -61,7 +61,8 @@ export function Login() {
         throw Error(`${data.message}`)
       }
 
-    } catch (error) {
+    } 
+    catch (error) {
       console.error('Error during login:', error);
       setError(`${error}...`);
     }

@@ -37,29 +37,55 @@ export function Admindashboard() {
 
   let done = useRef(false)
 
-  useEffect(() => {
+//   useEffect(() => {
+//   if(!getStoredToken()){
+//     navigate(`/`)
+//   }
+// }, [ navigate, getStoredToken ]);
+
+//   useEffect(() => {
+//     const handleIsLoggedIn = () => {
+//       if(isLoggedIn() === false){
+//         navigate(`/`)
+//       }
+//       return(true)
+//     };
+//     handleIsLoggedIn()
+//     return () => {
+//     };
+//   }, [ isLoggedIn, navigate ]);
+
+
+  
+//   if(isLoggedIn() && userRole() !== 'admin' ){ // ensures only admin is allowed
+//     navigate(`/`)
+//   }
+
+
+useEffect(() => {
   if(!getStoredToken()){
     navigate(`/`)
   }
-}, [ navigate, getStoredToken ]);
 
-  useEffect(() => {
     const handleIsLoggedIn = () => {
       if(isLoggedIn() === false){
         navigate(`/`)
       }
       return(true)
     };
-    handleIsLoggedIn()
-    return () => {
-    };
-  }, [ isLoggedIn, navigate ]);
+
+    if(isLoggedIn() && userRole() !== 'admin' ){ 
+      // ensures only admin is allowed
+      console.log('note admin')
+        navigate(`/`) 
+      }
+
+    // handleIsLoggedIn()
+    // return () => {
+    // };
 
 
-  
-  if(isLoggedIn() && userRole() !== 'admin' ){ // ensures only admin is allowed
-    navigate(`/`)
-  }
+  }, [ isLoggedIn, navigate, getStoredToken ]);
 
   const labels = []
   const data1 = []

@@ -54,7 +54,6 @@ exports.getAllSupportcvsOn_ticket_id = asyncErrorHandler(async (req, res, next) 
     })  
 })
 
-
 exports.postSupportcv = asyncErrorHandler(async (req, res, next) => {
     req.body = HTMLspecialChars(req.body)
     if(req.files){

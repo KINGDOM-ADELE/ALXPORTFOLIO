@@ -1,10 +1,10 @@
 const CustomError = require('../Utils/CustomError')
 const User = require('../Models/userModel')
-// const Stats = require('../Models/statsModal')
+const Stats = require('../Models/statsModal')
 const Enquiry = require('../Models/enquiryModel')
 const Course = require('../Models/courseModel')
 const asyncErrorHandler = require('../Utils/asyncErrorHandler')
-const StatusStatsHandler = require('../Utils/StatusStatsHandler')
+const StatusStatsHandler = require('../Utils_MSU/StatusStatsHandler')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt') // used in registration function
 const util = require('util') // used in a function
@@ -581,10 +581,15 @@ exports.changePassword = asyncErrorHandler(async (req, res, next) => {
         })  
 })
 
+
 exports.getUsers = asyncErrorHandler(async (req, res, next) => {
-    let features = new ApiFeatures(User.find(), req.query).filter().sort().limitfields().paginate()
+    let features = new ApiFeatures(User.find(), req.query).countDocuments().filter().sort().limitfields().paginate()
  
-    let user = await features.query
+        // Execute the query and get the result
+        let supportcv = await features.query;
+
+        // Get the total count of records
+        let totalCount = await features.totalCountPromise;
 
     req.query.page && paginationCrossCheck(user.length)
     
@@ -594,6 +599,7 @@ exports.getUsers = asyncErrorHandler(async (req, res, next) => {
     res.status(200).json({ 
         status : "success",
         resource : "users",
+        RecordsEstimate: totalCount,
         lenght : user.length,
         data : user
        })  

@@ -1,5 +1,5 @@
-const Coursex = require('./../Models/courseModel')
-const Statsx = require('./../Models/statsModal')
+const Coursex = require('../Models/courseModel')
+const Statsx = require('../Models/statsModal')
 
 
 module.exports = async (oldz, newz, courseId, byId = true) => {

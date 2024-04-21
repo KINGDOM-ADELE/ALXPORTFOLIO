@@ -1,5 +1,6 @@
 //INPORT EXPRESS
 const express = require('express')
+const rateLimiter = require('./Utils/RateLimiter')
 
 
 const path = require('path')
@@ -13,6 +14,31 @@ app.set('view engine', 'ejs');
 const cors = require('cors');
 app.use(cors()) // allows cross origin scripting
 app.use(bodyParserx.json()) 
+
+//// DEMO start
+// // Apply the dynamic rate limiter middleware to specific routes or all routes
+// app.use('/api/', rateLimiter(6)); // Apply to all routes under /api/ with a limit of 6
+// // or
+// // Apply rate limiter middleware to specific routes with different limits
+// app.use('/api/limited1', rateLimiter(10)); // Apply rate limiting with limit of 10 requests per minute for API1
+// app.use('/api/limited2', rateLimiter(20)); // Apply rate limiting with limit of 20 requests per minute for API2
+// app.use('/api/unlimited', rateLimiter(null)); // Exclude rate limiting for API3
+
+// // Define your routes
+// app.get('/api/limited1/resource', (req, res) => {
+//     res.send('API1 Resource');
+// });
+
+// app.get('/api/limited2/resource', (req, res) => {
+//     res.send('API2 Resource');
+// });
+
+// app.get('/api/unlimited/resource', (req, res) => {
+//     res.send('API3 Resource');
+// });
+//// DEMO start
+
+// app.use('/api/', rateLimiter(3));
 
 const courseRouter = require('./Routes/courseroutes')
 const authRouter = require('./Routes/authrouter')
@@ -28,6 +54,8 @@ const contactMessageRouter = require('./Routes/contactMessagetroutes')
 
 const CustomError = require('./Utils/CustomError')
 const globalErrorHandler = require('./Controllers/errorController');
+
+
 
 
 
@@ -72,16 +100,15 @@ app.use('/api/v1/supportscv', supportcvRouter)// mounting support route
 
 
     
-    app.use(express.static(path.join(__dirname, 'build'))); // Serve static files from the "public" directory (React build files).
-    app.use('/uploads', express.static(path.join(__dirname, 'uploads'))) // lets us access static files in the upload folder
-  
+    
+app.use(express.static(path.join(__dirname, 'build'))); // Serve static files from the "public" directory (React build files).
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))) // lets us access static files in the upload folder
 
-    // Define a route to serve the "build/index.html" file as the default route
-    app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
- 
 
-    });
+// Define a route to serve the "build/index.html" file as the default route
+app.get('/*', (req, res) => {
+res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 //   //DEFAULT ROUTE (for all other routes that are not matched)
 //   app.all('*', (req, res, next) => {

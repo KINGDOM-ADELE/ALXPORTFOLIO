@@ -43,13 +43,13 @@ else{
     HOST = process.env.PROD_HOST 
 }
 
-//db connection
+//db connection start
 mongoose.connect(URL, {
         useUnifiedTopology: true,
         useNewUrlParser: true,
         // useCreateIndex: true,
         // useFindAndModify: true
-    })
+})
     const connection = mongoose.connection
     //for one time listening
     // connection.once('open', () => {
@@ -86,7 +86,7 @@ mongoose.connect(URL, {
   })
 
 
-//db connection
+//db connection end
 
 const port = process.env.PORT || 7300
 const serverName = "MrSoftTraining"

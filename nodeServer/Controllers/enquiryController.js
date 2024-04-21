@@ -5,7 +5,7 @@ const asyncErrorHandler = require('../Utils/asyncErrorHandler');
 const CustomError = require('../Utils/CustomError');
 const paginationCrossCheck = require('../Utils/paginationCrossCheck')
 const HTMLspecialChars = require('../Utils/HTMLspecialChars')
-const StatusStatsHandler = require('./../Utils/StatusStatsHandler')
+const StatusStatsHandler = require('../Utils_MSU/StatusStatsHandler')
 const GetUserDetailsFromHeader = require('../Utils/GetUserDetailsFromHeader')
 
 

@@ -3,20 +3,20 @@ const fs = require('fs')
 const AutoLogFile = require('../Utils/AutoLogFile')
 
 
-const supportSchema = new mongoose.Schema(
-        {
-    "supportTicketId": {type: String, required: [true, 'please enter supportCode'], trim: true},
+const supportcvSchema = new mongoose.Schema(
+{
 
-    "message": {type: String, required: [false, 'Please enter course description'], trim: true},
+    "name": {type: String, required: [true, 'please enter your full name'], trim: true},
+    
+    "email": {type: String, unique: true, required: [true, 'Please enter email'], lowercase: true, trim: true    },
+    
+    
+    "phone": {type: String, required: [true, 'Please enter phone'], trim: true},
+
 
     "files": [Object],
 
-    // not required in the user inpute form
-    "createdBy": {
-        type: mongoose.Schema.Types.Mixed,
-        required: [true, 'Please complete the hidden field createdBy'],
-        trim: true
-    },
+    // Always ensure that we include release date cause its a filter condition
     "releaseDate": {type: Date, default: Date.now, required: true, trim: true},
     "created": {type: Date, default: Date.now, immutable: true, trim: true},
     "updated": {type: Date, default: Date.now, trim: true,  select: false}, 
@@ -24,10 +24,9 @@ const supportSchema = new mongoose.Schema(
 
 
 
-
 // USING MONGOOSE MIDDLEWARE
 //post hook
-supportSchema.post('save', async function(doc, next){
+supportcvSchema.post('save', async function(doc, next){
     const logFile = await AutoLogFile()
     const content = `A new support document with issueCode ${doc.issueCode} created by ${doc.createdBy} on ${doc.created}\n`
     fs.writeFileSync(logFile, content, {flag: 'a'},(err) => {
@@ -36,14 +35,16 @@ supportSchema.post('save', async function(doc, next){
 })
 
 
-supportSchema.pre(/^find/, async function(next){
+supportcvSchema.pre(/^find/, async function(next){
+    // Note: this model will not server anything that is not upto its realease date
+    // else remove this middleware
     this.find({releaseDate: {$lte: Date.now()}})
     this.startTime = Date.now()
     next()
-})
+}) 
 
 
-supportSchema.post(/^find/, async function(docs,next){
+supportcvSchema.post(/^find/, async function(docs,next){
     // this here points to the corrent querry
     this.endTime = Date.now()
     const logFile = await AutoLogFile()
@@ -51,14 +52,15 @@ supportSchema.post(/^find/, async function(docs,next){
     fs.writeFileSync(logFile, content, {flag: 'a'},(err) => {
     })
     next()
+
 })
 
 
 // AGGREGATION MIDDLEWARES
-supportSchema.pre('aggregate', function(next){
+supportcvSchema.pre('aggregate', function(next){
     // this here points to the corrently processing aggregation object
     this.pipeline().unshift({$match: {releaseDate: {$lte: new Date()}}})
      next()
 })
 
-module.exports = mongoose.model('support', supportSchema)
+module.exports = mongoose.model('supportcv', supportcvSchema)

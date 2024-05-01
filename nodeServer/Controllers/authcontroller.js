@@ -155,7 +155,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     }
 
     while(tries < 5 && success < 1){
-     sendAnEmail () // allows 5 tries to send email before proceeding
+        await sendAnEmail () // allows 5 tries to send email before proceeding
     }
     console.log( `proceeding after attempts: ${tries} and success: ${success}`)
     ///

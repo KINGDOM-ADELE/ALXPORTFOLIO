@@ -22,7 +22,7 @@ let HOST = 'nohost'
 if(process.env.NODE_ENV === "development"){
     HOST = process.env.DEV_HOST
 }
-else if(process.env.TestingForProduction = true && process.env.NODE_ENV === "production"){
+else if(process.env.TestingForProduction === true && process.env.NODE_ENV === "production"){
     HOST = process.env.DEV_HOST
 }
 else{

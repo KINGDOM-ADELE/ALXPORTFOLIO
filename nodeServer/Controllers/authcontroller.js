@@ -123,13 +123,13 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     YOUR FUTURE AS A TECH ENGINEER IS BRIGHT.
     
     <p>
-    Thank you for choosing MRsoft.
+    Thank you for choosing ${process.env.ORG_NAME}.
     </p>
     
     <p>
     ${req.protocol}://${HOST}
     </p>
-    ${process.env.NODE_ENV}
+   
     </body></html>`;
 
 

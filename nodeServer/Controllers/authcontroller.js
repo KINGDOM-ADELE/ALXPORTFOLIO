@@ -55,47 +55,6 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     
     //4 SEND THE TOKEN TO THE USER VIA EMAIL 
     const verifyUrl = `${req.protocol}://${HOST}/${process.env.UI_VERIFICATION_PATH}?token=${VerificationToken}`
-    // const message = `We have recieved a password reset request. Please use the link below to reset your password\n\n ${resetUrl} \n\n
-    // this link will be valid for 10 munutes.`
-
-
-    // const message = `<html><body>
-    // <p>
-    // Hi ${newUser.firstName} ${newUser.middleName} ${newUser.lastName},</p> 
-    
-    // We have recieved your new account.
-    // <p>
-    // Please use the link below to verify your email:
-    // </p>
-    
-    // <table align='center' ><tr><td  align='center' style='	color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'><b>${VerificationToken}</b>
-    //     </td></tr></table>
-    
-    // <p>
-    
-    // You can also click on 'verify email' below to verify your email.
-    // </p>
-    
-    // <table align='center' ><tr><td  align='center' style='	color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'><a href='${verifyUrl}'><b>VERIFY EMAIL</b></a>
-    //     </td></tr></table>
-    
-    // <p>
-    // For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
-    // </p>
-    
-    // WITH MRSOFT, </br>
-    // YOUR FUTURE AS A TECH ENGINEER IS BRIGHT.
-    
-    // <p>
-    // Thank you for chosing MRsoft.
-    // </p>
-    
-    // <p>
-    // ${req.protocol}://${HOST}
-    // </p>
-    // </body></html>"`
-
-
 
     const message = `<html><body>
     <p>
@@ -403,27 +362,42 @@ exports.forgotpassword = asyncErrorHandler(async (req, res, next) => {
     </body></html>`;
  
 
+    let tries = 0
+    let success = 0
+    let errormessage = ''
+    let Subject= ''
 
-    try{
-        await sendEmail({
-            email: user.email,
-            subject: "Password reset request",
-            message: message
-        })
-        res.status(200).json({ 
-            status : "success",
-            subject : "Password change request recievced",
-            message: message
+    const sendAnEmail = async () => {
+        try{
+            await sendEmail({
+                email: user.email,
+                subject: "Password reset request",
+                message: message
+            })
+            Subject = "Password change request recievced",
+            success += 1
+        }
+        catch(err){
+            // destroy the saved token and then throw error
+            user.passwordResetToken = undefined
+            user.passwordResetTokenExp = undefined 
+            errormessage =`There is an error sending password reset email. Please try again later`
 
-           })  
+        }
     }
-    catch(err){
-        // destroy the saved token and then throw error
-        user.passwordResetToken = undefined
-        user.passwordResetTokenExp = undefined 
-        return next(new CustomError(`There is an error sending password reset email. Please try again later`, 500))
-
+    while(tries < 5 && success < 1){
+        await sendAnEmail () // allows 5 tries to send email before proceeding
     }
+     console.log( `proceeding after attempts: ${tries} and success: ${success}`)
+     if (success < 1){
+        return next(new CustomError(errormessage, 500))
+     }
+
+     res.status(200).json({ 
+        status : "success",
+        Subject
+
+    }) 
 
 
 })
@@ -504,34 +478,49 @@ exports.resetpassword = asyncErrorHandler(async (req, res, next) => {
 
 
     let emailverificationMessage;
-    try{
-        await sendEmail({
-            email: user.email,
-            subject: "Password reset request",
-            message: message
-        })
-        emailverificationMessage = `Password reset mail successfull.`
-        console.log("Password reset mail successfull.")
+    let tries = 0
+    let success = 0
+    let errormessage = ''
+    let Subject= ''
+    const sendAnEmail = async () => {
+        try{
+            await sendEmail({
+                email: user.email,
+                subject: "Password reset request",
+                message: message
+            })
+            Subject = "Password change request recievced",
+            success += 1
+        }
+        catch(err){
+            // destroy the saved token and then throw error
+            user.passwordResetToken = undefined
+            user.passwordResetTokenExp = undefined 
+            errormessage =`There is an error sending password reset email. Please try again later`
 
+        }
     }
-    catch(err){
-
- 
-        // return next(new CustomError(`There is an error sending password reset email. Please try again later`, 500))
-        emailverificationMessage = `Password reset mail failed.`
-        console.log("Password reset mail failed")
-
-        
+    while(tries < 5 && success < 1){
+        await sendAnEmail () // allows 5 tries to send email before proceeding
     }
+     console.log( `proceeding after attempts: ${tries} and success: ${success}`)
+     if (success < 1){
+        // return next(new CustomError(errormessage, 500))
+     }
     ///
-  console.log(emailverificationMessage)
-   res.status(201).json({ 
+    console.log(emailverificationMessage)
+    res.status(201).json({ 
        status : "success",
+       Subject,
        token,
        emailverificationMessage,
        resource : "user",
        action : "password-reset"
-      })  
+    })  
+
+
+    
+
 }) 
 
 
@@ -1011,7 +1000,7 @@ exports.approveUser = asyncErrorHandler(async (req, res, next) => {
     <p>
     Hi ${user.firstName} ${user.middleName} ${user.lastName},</p> 
     
-    This is to notify you that your account with MRsoft International has been approved.
+    This is to notify you that your account with ${process.env.ORG_NAME} has been approved.
 
     <p>
     For information on ${process.env.ORG_NAME} visit <a href='${process.env.ORG_WEBSIT}'>${process.env.ORG_WEBSIT}</a>
@@ -1037,18 +1026,33 @@ exports.approveUser = asyncErrorHandler(async (req, res, next) => {
 
 
     let userApprovalMessage;
-    try{
-        await sendEmail({
-            email: user.email,
-            subject: "Usere account approval",
-            message: message
-        })
-        userApprovalMessage = `User account approval mail successfull.`
+    let tries = 0
+    let success = 0
+    let errormessage = ''
+    let Subject= ''
+    const sendAnEmail = async () => {
+      tries += 1
+        try{
+            await sendEmail({
+                email: user.email,
+                subject: "Usere account approval",
+                message: message
+            })
+            userApprovalMessage = `User account approval mail successfull.`
+            success += 1
+        }
+        catch(err){
+            errormessage = `There is an error sending Usere account approval mail. Please try again later`
+            userApprovalMessage = `User account approval mail failed.`
+            
+        }
     }
-    catch(err){
-        // return next(new CustomError(`There is an error sending Usere account approval mail. Please try again later`, 500))
-        userApprovalMessage = `User account approval mail failed.`
-        
+    while(tries < 5 && success < 1){
+        await sendAnEmail () // allows 5 tries to send email before proceeding
+    }
+    console.log( `proceeding after attempts: ${tries} and success: ${success}`)
+    if (success < 1){
+        return next(new CustomError(errormessage, 500))
     }
     ///
 
@@ -1060,7 +1064,9 @@ exports.approveUser = asyncErrorHandler(async (req, res, next) => {
        resource : "user",
        action : "account approved",
        data : limitedUser
-      })  
+    }) 
+      
+      
 }) 
 
 
@@ -1109,7 +1115,7 @@ exports.setUserStatus = asyncErrorHandler(async (req, res, next) => {// by admin
     <p>
     Hi ${user.firstName} ${user.middleName} ${user.lastName},</p> 
     
-    This is to notify you that your account status with MRsoft International has been changed to ${req.body.status}.
+    This is to notify you that your account status with ${process.env.ORG_NAME} has been changed to ${req.body.status}.
 
     <p>
     For information on ${process.env.ORG_NAME} visit <a href='${process.env.ORG_WEBSIT}'>${process.env.ORG_WEBSIT}</a>
@@ -1135,27 +1141,42 @@ exports.setUserStatus = asyncErrorHandler(async (req, res, next) => {// by admin
 
 
     let userApprovalMessage;
-    try{
-        await sendEmail({
-            email: user.email,
-            subject: "Usere account approval",
-            message: message
-        })
-        userApprovalMessage = `User account approval notification mail successfull.`
+    let tries = 0
+    let success = 0
+    let errormessage = ''
+    const sendAnEmail = async () => {
+      tries += 1
+        try{
+            await sendEmail({
+                email: user.email,
+                subject: "Usere account approval",
+                message: message
+            })
+            userApprovalMessage = `User account approval notification mail successfull.`
+            success += 1
+        }
+        catch(err){
+            errormessage = `There is an error sending Usere account approval mail. Please try again later`
+            userApprovalMessage = `User account approval notification mail failed.`
+        }
     }
-    catch(err){
-        // return next(new CustomError(`There is an error sending Usere account approval mail. Please try again later`, 500))
-        userApprovalMessage = `User account approval notification mail failed.`
-        
+    while(tries < 5 && success < 1){
+        await sendAnEmail () // allows 5 tries to send email before proceeding
+    }
+    console.log( `proceeding after attempts: ${tries} and success: ${success}`)
+    if (success < 1){
+        // return next(new CustomError(errormessage, 500))
     }
     ///
 
-   res.status(201).json({ 
+    res.status(201).json({ 
        status : "success",
        userApprovalMessage,
        resource : "user",
        action : "account approved"
-      })  
+    })  
+
+
 }) 
 
 
@@ -1237,26 +1258,43 @@ exports.setUserCourse = asyncErrorHandler(async (req, res, next) => {
 
 
     let userSetCorseMessage;
-    try{
-        await sendEmail({
-            email: user.email,
-            subject: "Usere account approval",
-            message: message
-        })
-        userSetCorseMessage = `User course status change notification mail successfull.`
+    let tries = 0
+    let success = 0
+    let errormessage = ''
+    const sendAnEmail = async () => {
+      tries += 1
+        try{
+            await sendEmail({
+                email: user.email,
+                subject: "Usere account approval",
+                message: message
+            })
+            userSetCorseMessage = `User course status change notification mail successfull.`
+            success += 1
+
+        }
+        catch(err){
+            errormessage = `There is an error sending Usere account approval mail. Please try again later`
+            userSetCorseMessage = `User course status change notification mail failed.`   
+        }
     }
-    catch(err){
-        // return next(new CustomError(`There is an error sending Usere account approval mail. Please try again later`, 500))
-        userSetCorseMessage = `User course status change notification mail failed.`   
+    while(tries < 5 && success < 1){
+        await sendAnEmail () // allows 5 tries to send email before proceeding
+    }
+    console.log( `proceeding after attempts: ${tries} and success: ${success}`)
+    if (success < 1){
+        // return next(new CustomError(errormessage, 500))
     }
     ///
 
-   res.status(201).json({ 
+    res.status(201).json({ 
        status : "success",
        userSetCorseMessage,
        resource : "user",
        action : "account approved"
-      })  
+    })  
+
+
 }) 
 
 
@@ -1336,17 +1374,33 @@ exports.adminSetUserCourse = asyncErrorHandler(async (req, res, next) => {
 
 
     let userSetCorseMessage;
-    try{
-        await sendEmail({
-            email: user.email,
-            subject: "Usere account approval",
-            message: message
-        })
-        userSetCorseMessage = `User course status change notification mail successfull.`
+    let tries = 0
+    let success = 0
+    let errormessage = ''
+    let Subject= ''
+    const sendAnEmail = async () => {
+      tries += 1
+        try{
+            await sendEmail({
+                email: user.email,
+                subject: "Usere account approval",
+                message: message
+            })
+            userSetCorseMessage = `User course status change notification mail successfull.`
+            success += 1
+
+        }
+        catch(err){
+            errormessage = `There is an error sending Usere account approval mail. Please try again later`
+            userSetCorseMessage = `User course status change notification mail failed.`   
+        }
     }
-    catch(err){
-        // return next(new CustomError(`There is an error sending Usere account approval mail. Please try again later`, 500))
-        userSetCorseMessage = `User course status change notification mail failed.`   
+    while(tries < 5 && success < 1){
+    await sendAnEmail () // allows 5 tries to send email before proceeding
+    }
+    console.log( `proceeding after attempts: ${tries} and success: ${success}`)
+    if (success < 1){
+        // return next(new CustomError(errormessage, 500))
     }
     ///
 
@@ -1355,7 +1409,9 @@ exports.adminSetUserCourse = asyncErrorHandler(async (req, res, next) => {
        userSetCorseMessage,
        resource : "user",
        action : "account approved"
-      })  
+    })  
+
+
 }) 
 
 

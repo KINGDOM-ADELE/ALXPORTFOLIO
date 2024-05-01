@@ -140,5 +140,3 @@ exports.deleteSupportTicket = asyncErrorHandler(async (req, res, next) => {
         message: 'deleted'
     })  
 })
-
-

@@ -52,7 +52,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     
     
     //4 SEND THE TOKEN TO THE USER VIA EMAIL 
-    const verifyUrl = `${req.protocol}://${HOST}/api/v1/users/verifyemail/${VerificationToken}`
+    const verifyUrl = `${req.protocol}://${HOST}/${process.env.UI_PASSWORD_RESET_PATH}?token=${VerificationToken}`
     // const message = `We have recieved a password reset request. Please use the link below to reset your password\n\n ${resetUrl} \n\n
     // this link will be valid for 10 munutes.`
 
@@ -345,8 +345,7 @@ exports.forgotpassword = asyncErrorHandler(async (req, res, next) => {
     // console.log('user update failed')
    } 
     //4 SEND THE TOKEN TO THE USER VIA EMAIL 
-
-    const resetUrl = `${HOST}/resetpassword?resetToken=${resetToken}`
+    const resetUrl = `${HOST}/${process.env.UI_PASSWORD_RESET_PATH}?resetToken=${resetToken}`
     // const message = `We have recieved a password reset request. Please use the link below to reset your password\n\n ${resetUrl} \n\n
     // this link will be valid for 10 munutes.`
 
@@ -906,7 +905,6 @@ exports.deleteUser = asyncErrorHandler(async (req, res, next) => {
 
 
 exports.verifyEmail = asyncErrorHandler(async (req, res, next) => {
-    req.body = HTMLspecialChars(req.body)
     const cryptotoken = crypto.createHash('sha256').update(req.params.token).digest('hex')
    const user = await User.findOne({emailVerificationToken: cryptotoken}) 
    

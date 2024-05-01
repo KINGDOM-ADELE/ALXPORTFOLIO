@@ -12,6 +12,7 @@ import { Contact } from './routes/Contact';
 import { ResetPassword } from './routes/ResetPassword';
 import { ForgotPassword } from './routes/ForgorPassword';
 import Landing from './routes/Landingpage';
+import { VerifyAccount } from './routes/verifyaccount';
 
 
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="contact" element={<Contact />} />
           <Route path="register" element={<Register />} />
+          <Route path="verifyaccount" element={<VerifyAccount />} />
           <Route path="resetpassword" element={<ResetPassword />} />
           <Route path="forgotpassword" element={<ForgotPassword />} />
           <Route path="admin/*" element={<Admin />} />

@@ -427,3 +427,9 @@ API_base_url = http://127.0.0.1:7800/
 # methods: get
 {{API_base_url}}api/v1/supportscv
 https://zenager.onrender.com/api/v1/supportscv
+
+
+# Post
+# with with verification token
+{{API_base_url}}api/v1/users/verifyemail/:_token
+{{API_base_url}}api/v1/users/verifyemail/8459e262e0ddd00d49ad8843528762f6cb133b6fae9fd22af7kingdom.adele@gmail.com

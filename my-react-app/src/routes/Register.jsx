@@ -4,6 +4,7 @@ import { BeatLoader } from 'react-spinners';
 import { AppContext } from '../Context/App_Context';
 import { Link, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import Swal from 'sweetalert2';
 
 
 
@@ -68,7 +69,7 @@ export function Register() {
       data.token && StoreToken(data.token) 
       data.data && StoreUserObj(data.data)
 
-      alert('Registration successful, you have been successfully logged in and will be redirected to your dashboard');
+      Swal('Registration successful, you have been successfully logged in and will be redirected to your dashboard');
 
       if(data.data.role === 'admin'){
         navigate(`/Admin`)

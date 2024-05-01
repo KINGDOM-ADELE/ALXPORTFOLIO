@@ -128,6 +128,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     <p>
     ${req.protocol}://${HOST}
     </p>
+    ${process.env.NODE_ENV}
     </body></html>`;
 
 

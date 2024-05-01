@@ -23,11 +23,11 @@ export function VerifyAccount() {
     handleParams();
   }, []);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (verifyToken) => {
     setIsLoading(true);
 
     try { 
-      const response = await fetch(`${API_base_url}api/v1/users/verifyemail/${verifyToken.current}`, {
+      const response = await fetch(`${API_base_url}api/v1/users/verifyemail/${verifyToken}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -36,9 +36,16 @@ export function VerifyAccount() {
 
       const data = await response.json();
       if(data.status === 'success'){
-        let message = `Your account verification was successful. You have been successfully logged in.`
-        setVerifiedMessage(message);
-        Swal.fire(message);
+        // let message = `Your account verification was successful. You have been successfully logged in.`
+        // setVerifiedMessage(message);
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Registration Successful!',
+          text: `Your account verification was successful. You have been successfully logged in.`,
+          timer: 2000,
+          showConfirmButton: false
+        })
         setTimeout(() => {
           navigate(`/`);
         }, 2000);
@@ -57,8 +64,8 @@ export function VerifyAccount() {
   };
 
   useEffect(() => {
-    handleSubmit();
-  }, [verifyToken.current]); // Add verifyToken.current to the dependency array
+    handleSubmit(verifyToken.current);
+  }, []); // Add verifyToken.current to the dependency array
 
   // Define fullwidth style object
   const fullwidth = {

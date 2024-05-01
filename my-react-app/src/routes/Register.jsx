@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 
 
 
+
 export function Register() {
   const { API_base_url, StoreToken, StoreUserObj} = useContext(AppContext)
 
@@ -69,18 +70,30 @@ export function Register() {
       data.token && StoreToken(data.token) 
       data.data && StoreUserObj(data.data)
 
-      Swal('Registration successful, you have been successfully logged in and will be redirected to your dashboard');
-
-      if(data.data.role === 'admin'){
-        navigate(`/Admin`)
-      }
-      else{
-        navigate(`/User`)
-      }
-
+      Swal.fire({
+        icon: 'success',
+        title: 'Registration Successful!',
+        text: 'Registration successful, you have been successfully logged in and will be redirected to your dashboard',
+        timer: 2000,
+        showConfirmButton: false
+      })
+      setTimeout(() => {
+        if(data.data.role === 'admin'){
+          navigate(`/Admin`)
+        }
+        else{
+          navigate(`/User`)
+        }
+      }, 4000);
     } catch (error) {
       // Handle any errors
       console.error('Registration failed:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Registration Failed',
+        // text: `An error occurred during registration. Please try again later.`,
+        text: `${error}. Please try again later.`
+      });
     }
     setIsLoading(false);
   };

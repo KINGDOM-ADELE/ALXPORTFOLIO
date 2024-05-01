@@ -1036,7 +1036,6 @@ exports.approveUser = asyncErrorHandler(async (req, res, next) => {
     </body></html>`;
 
 
-
     let userApprovalMessage;
     try{
         await sendEmail({

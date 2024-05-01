@@ -104,8 +104,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     Please use the link below to verify your email:
     </p>
     
-    <table align='center' ><tr><td  align='center' style='color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'><b>${VerificationToken}</b>
-        </td></tr></table>
+    ${verifyUrl}
     
     <p>
     You can also click on 'verify email' below to verify your email.

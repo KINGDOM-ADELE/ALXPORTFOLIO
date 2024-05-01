@@ -52,7 +52,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     
     
     //4 SEND THE TOKEN TO THE USER VIA EMAIL 
-    const verifyUrl = `${req.protocol}://${HOST}/${process.env.UI_PASSWORD_RESET_PATH}?token=${VerificationToken}`
+    const verifyUrl = `${req.protocol}://${HOST}/${process.env.UI_VERIFICATION_PATH}?token=${VerificationToken}`
     // const message = `We have recieved a password reset request. Please use the link below to reset your password\n\n ${resetUrl} \n\n
     // this link will be valid for 10 munutes.`
 
@@ -116,7 +116,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     ${verifyUrl}
     
     <p>
-    For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    For information on ${process.env.ORG_NAME} visit <a href='${process.env.ORG_WEBSIT}'>${process.env.ORG_WEBSIT}</a>
     </p>
     
     WITH MRSOFT, </br>

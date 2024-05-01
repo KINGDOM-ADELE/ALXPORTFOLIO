@@ -143,14 +143,21 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
             })
             emailverificationMessage = `Email verification mail has been sent to  ${newUser.email}, pleae veryfy your email address.`
             success += 1
+            console.log(emailverificationMessage, `attempts: ${tries}`)
         }
         catch(err){
             newUser.emailVerificationToken = undefined,
             newUser.emailVerificationTokenExp = undefined,
             emailverificationMessage = `Email verification mail failed.`
+            console.log(emailverificationMessage, `attempts: ${tries}`)
+
         }
     }
-    tries < 4 && success < 1 && sendAnEmail () // allows 5 tries to send email before proceeding
+
+    while(tries < 5 && success < 1){
+     sendAnEmail () // allows 5 tries to send email before proceeding
+    }
+    console.log( `proceeding after attempts: ${tries} and success: ${success}`)
     ///
 
     // At this point every modification to the user object has been made
@@ -363,7 +370,7 @@ exports.forgotpassword = asyncErrorHandler(async (req, res, next) => {
         </td></tr></table>
     
     <p>
-    For information on MRsoft International visit <a href='/${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
     </p>
     
     WITH MRSOFT, </br>
@@ -374,7 +381,7 @@ exports.forgotpassword = asyncErrorHandler(async (req, res, next) => {
     </p>
     
     <p>
-    <a href='/${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
     </p>
     </body></html>"`
  
@@ -456,7 +463,7 @@ exports.resetpassword = asyncErrorHandler(async (req, res, next) => {
     
     
     <p>
-    For information on MRsoft International visit <a href='/${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
     </p>
     
     WITH MRSOFT, </br>
@@ -467,7 +474,7 @@ exports.resetpassword = asyncErrorHandler(async (req, res, next) => {
     </p>
     
     <p>
-        <a href='/${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+        <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
     </p>
     </body></html>"`
 
@@ -481,16 +488,20 @@ exports.resetpassword = asyncErrorHandler(async (req, res, next) => {
             message: message
         })
         emailverificationMessage = `Password reset mail successfull.`
+        console.log("Password reset mail successfull.")
+
     }
     catch(err){
 
  
         // return next(new CustomError(`There is an error sending password reset email. Please try again later`, 500))
         emailverificationMessage = `Password reset mail failed.`
+        console.log("Password reset mail failed")
+
         
     }
     ///
-
+  console.log(emailverificationMessage)
    res.status(201).json({ 
        status : "success",
        token,
@@ -585,11 +596,11 @@ exports.changePassword = asyncErrorHandler(async (req, res, next) => {
 exports.getUsers = asyncErrorHandler(async (req, res, next) => {
     let features = new ApiFeatures(User.find(), req.query).countDocuments().filter().sort().limitfields().paginate()
  
-        // Execute the query and get the result
-        let supportcv = await features.query;
+    // Execute the query and get the result
+    let supportcv = await features.query;
 
-        // Get the total count of records
-        let totalCount = await features.totalCountPromise;
+    // Get the total count of records
+    let totalCount = await features.totalCountPromise;
 
     req.query.page && paginationCrossCheck(user.length)
     
@@ -981,7 +992,7 @@ exports.approveUser = asyncErrorHandler(async (req, res, next) => {
     This is to notify you that your account with MRsoft International has been approved.
 
     <p>
-    For information on MRsoft International visit <a href='/${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
     </p>
     
     WITH MRSOFT, </br>
@@ -992,7 +1003,7 @@ exports.approveUser = asyncErrorHandler(async (req, res, next) => {
     </p>
     
     <p>
-    <a href='/${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
     </p>
     </body></html>"`
 
@@ -1074,7 +1085,7 @@ exports.setUserStatus = asyncErrorHandler(async (req, res, next) => {// by admin
     This is to notify you that your account status with MRsoft International has been changed to ${req.body.status}.
 
     <p>
-    For information on MRsoft International visit <a href='/${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
     </p>
     
     WITH MRSOFT, </br>
@@ -1085,7 +1096,7 @@ exports.setUserStatus = asyncErrorHandler(async (req, res, next) => {// by admin
     </p>
     
     <p>
-    <a href='/${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
     </p>
     </body></html>"`
 
@@ -1170,7 +1181,7 @@ exports.setUserCourse = asyncErrorHandler(async (req, res, next) => {
     This is to notify you that your course status on course code ${req.body.courseCode} with MRsoft International has been changed to ${req.body.courseStatus}.
 
     <p>
-    For information on MRsoft International visit <a href='/${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
     </p>
     
     WITH MRSOFT, </br>
@@ -1181,7 +1192,7 @@ exports.setUserCourse = asyncErrorHandler(async (req, res, next) => {
     </p>
     
     <p>
-    <a href='/${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
     </p>
     </body></html>"`
 
@@ -1263,7 +1274,7 @@ exports.adminSetUserCourse = asyncErrorHandler(async (req, res, next) => {
     This is to notify you that your course status on course code ${req.body.courseCode} with MRsoft International has been changed to ${req.body.courseStatus}.
 
     <p>
-    For information on MRsoft International visit <a href='/${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
     </p>
     
     WITH MRSOFT, </br>
@@ -1274,7 +1285,7 @@ exports.adminSetUserCourse = asyncErrorHandler(async (req, res, next) => {
     </p>
     
     <p>
-    <a href='/${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
     </p>
     </body></html>"`
 

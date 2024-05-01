@@ -20,14 +20,14 @@ const sendEmail = async (option) => {
             user: process.env.PROD_EMAIL_USER,
             pass: process.env.PROD_EMAIL_Password,
         } 
-      });
+    });
 
-      if(process.env.NODE_ENV === "development"){
-
+    if(process.env.NODE_ENV === "development"){
         transporter = Dev_transporter
+        console.log("SENDING EMAIL via Dev_transporter")
     }else{
         transporter = Pro_transporter
-
+        console.log("SENDING EMAIL via Pro_transporter")
     }
 
 // DEFINE EMAIL OPTIONS

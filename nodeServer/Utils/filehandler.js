@@ -10,7 +10,6 @@ const storage = multer.diskStorage({
         cb(null, req.headers.targetFilepath) // using the file path set by authcontroller
     },
     filename: (req, file, cb) => {
-
         cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname)
         // cb(null, new Date().toISOString().replace(/:/g, '-') + path.extname(file.originalname))
     }

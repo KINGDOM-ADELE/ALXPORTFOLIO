@@ -57,4 +57,4 @@ enquirySchema.post(/^find/, async function(docs,next){
     next()
 })
 
-module.exports = mongoose.model('enquiry', enquirySchema)  
+module.exports = mongoose.model('enquiry', enquirySchema)

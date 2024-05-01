@@ -13,12 +13,12 @@ export const AppContextProvider = (props) => {
   if(process.env.NODE_ENV === "production" && process.env.testProd === true ){
     console.log('testProd', testProd)
     // API_base_url = "http://127.0.0.1:7300/"
-    API_base_url = "http://localhost:7700/"
+    API_base_url = "http://localhost:7800/"
     console.log('API_base_url', API_base_url)
   }
   else if(process.env.NODE_ENV === "production" && process.env.testProd === false){
     // API_base_url = "http://127.0.0.1:7300/"
-    API_base_url = "http://localhost:7700/"
+    API_base_url = "http://localhost:7800/"
     console.log('API_base_url', API_base_url)
   }
   else if (process.env.NODE_ENV === 'production'){
@@ -27,7 +27,7 @@ export const AppContextProvider = (props) => {
 
   }
   else{
-    API_base_url = "http://localhost:7700/"
+    API_base_url = "http://localhost:7800/"
     console.log('API_base_url', API_base_url)
 
   }

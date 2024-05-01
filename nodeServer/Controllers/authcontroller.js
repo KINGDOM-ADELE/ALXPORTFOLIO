@@ -29,6 +29,8 @@ else{
     HOST = process.env.PROD_HOST 
 }
 
+let DATE = new Date()
+let YY = DATE.getFullYear()
 
 
 const signToken = (_id, email, role, useragent) => {
@@ -98,8 +100,8 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     const message = `<html><body>
     <p>
     Hi ${newUser.firstName} ${newUser.middleName} ${newUser.lastName},</p> 
-    
-    We have received your new account.
+    Your account registraion is successful, and 
+    we all at ${process.env.ORG_NAME} are happy to welcome you to our world of new possibilities.
     
     <p>
     Please click on 'verify email' below to verify your email.
@@ -119,7 +121,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     For information on ${process.env.ORG_NAME} visit <a href='${process.env.ORG_WEBSIT}'>${process.env.ORG_WEBSIT}</a>
     </p>
     
-    WITH MRSOFT, </br>
+    WITH ${process.env.ORG_NAME.toUpperCase()}, </br>
     YOUR FUTURE AS A TECH ENGINEER IS BRIGHT.
     
     <p>
@@ -128,8 +130,13 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     
     <p>
     ${req.protocol}://${HOST}
+    YY
     </p>
    
+    <p>
+    ${YY} ${process.env.ORG_NAME}, Ensuring the best of service.
+    </p>
+
     </body></html>`;
 
 
@@ -374,20 +381,26 @@ exports.forgotpassword = asyncErrorHandler(async (req, res, next) => {
     </td></tr></table>
     
     <p>
-    For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    For information on ${process.env.ORG_NAME} visit <a href='${process.env.ORG_WEBSIT}'>${process.env.ORG_WEBSIT}</a>
     </p>
     
-    WITH MRSOFT, </br>
+    WITH ${process.env.ORG_NAME.toUpperCase()}, </br>
     YOUR FUTURE AS A TECH ENGINEER IS BRIGHT.
     
     <p>
-    Thank you for chosing MRsoft.
+    Thank you for choosing ${process.env.ORG_NAME}.
     </p>
     
     <p>
-    <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    ${req.protocol}://${HOST}
+    YY
     </p>
-    </body></html>"`
+   
+    <p>
+    ${YY} ${process.env.ORG_NAME}, Ensuring the best of service.
+    </p>
+
+    </body></html>`;
  
 
 
@@ -467,20 +480,26 @@ exports.resetpassword = asyncErrorHandler(async (req, res, next) => {
     
     
     <p>
-    For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    For information on ${process.env.ORG_NAME} visit <a href='${process.env.ORG_WEBSIT}'>${process.env.ORG_WEBSIT}</a>
     </p>
     
-    WITH MRSOFT, </br>
+    WITH ${process.env.ORG_NAME.toUpperCase()}, </br>
     YOUR FUTURE AS A TECH ENGINEER IS BRIGHT.
     
     <p>
-    Thank you for chosing MRsoft.
+    Thank you for choosing ${process.env.ORG_NAME}.
     </p>
     
     <p>
-        <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    ${req.protocol}://${HOST}
+    YY
     </p>
-    </body></html>"`
+   
+    <p>
+    ${YY} ${process.env.ORG_NAME}, Ensuring the best of service.
+    </p>
+
+    </body></html>`;
 
 
 
@@ -995,20 +1014,26 @@ exports.approveUser = asyncErrorHandler(async (req, res, next) => {
     This is to notify you that your account with MRsoft International has been approved.
 
     <p>
-    For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    For information on ${process.env.ORG_NAME} visit <a href='${process.env.ORG_WEBSIT}'>${process.env.ORG_WEBSIT}</a>
     </p>
     
-    WITH MRSOFT, </br>
+    WITH ${process.env.ORG_NAME.toUpperCase()}, </br>
     YOUR FUTURE AS A TECH ENGINEER IS BRIGHT.
     
     <p>
-    Thank you for chosing MRsoft.
+    Thank you for choosing ${process.env.ORG_NAME}.
     </p>
     
     <p>
-    <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    ${req.protocol}://${HOST}
+    YY
     </p>
-    </body></html>"`
+   
+    <p>
+    ${YY} ${process.env.ORG_NAME}, Ensuring the best of service.
+    </p>
+
+    </body></html>`;
 
 
 
@@ -1088,21 +1113,26 @@ exports.setUserStatus = asyncErrorHandler(async (req, res, next) => {// by admin
     This is to notify you that your account status with MRsoft International has been changed to ${req.body.status}.
 
     <p>
-    For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    For information on ${process.env.ORG_NAME} visit <a href='${process.env.ORG_WEBSIT}'>${process.env.ORG_WEBSIT}</a>
     </p>
     
-    WITH MRSOFT, </br>
+    WITH ${process.env.ORG_NAME.toUpperCase()}, </br>
     YOUR FUTURE AS A TECH ENGINEER IS BRIGHT.
     
     <p>
-    Thank you for chosing MRsoft.
+    Thank you for choosing ${process.env.ORG_NAME}.
     </p>
     
     <p>
-    <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    ${req.protocol}://${HOST}
+    YY
     </p>
-    </body></html>"`
+   
+    <p>
+    ${YY} ${process.env.ORG_NAME}, Ensuring the best of service.
+    </p>
 
+    </body></html>`;
 
 
     let userApprovalMessage;
@@ -1184,20 +1214,26 @@ exports.setUserCourse = asyncErrorHandler(async (req, res, next) => {
     This is to notify you that your course status on course code ${req.body.courseCode} with MRsoft International has been changed to ${req.body.courseStatus}.
 
     <p>
-    For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    For information on ${process.env.ORG_NAME} visit <a href='${process.env.ORG_WEBSIT}'>${process.env.ORG_WEBSIT}</a>
     </p>
     
-    WITH MRSOFT, </br>
+    WITH ${process.env.ORG_NAME.toUpperCase()}, </br>
     YOUR FUTURE AS A TECH ENGINEER IS BRIGHT.
     
     <p>
-    Thank you for chosing MRsoft.
+    Thank you for choosing ${process.env.ORG_NAME}.
     </p>
     
     <p>
-    <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    ${req.protocol}://${HOST}
+    YY
     </p>
-    </body></html>"`
+   
+    <p>
+    ${YY} ${process.env.ORG_NAME}, Ensuring the best of service.
+    </p>
+
+    </body></html>`;
 
 
 
@@ -1277,20 +1313,26 @@ exports.adminSetUserCourse = asyncErrorHandler(async (req, res, next) => {
     This is to notify you that your course status on course code ${req.body.courseCode} with MRsoft International has been changed to ${req.body.courseStatus}.
 
     <p>
-    For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    For information on ${process.env.ORG_NAME} visit <a href='${process.env.ORG_WEBSIT}'>${process.env.ORG_WEBSIT}</a>
     </p>
     
-    WITH MRSOFT, </br>
+    WITH ${process.env.ORG_NAME.toUpperCase()}, </br>
     YOUR FUTURE AS A TECH ENGINEER IS BRIGHT.
     
     <p>
-    Thank you for chosing MRsoft.
+    Thank you for choosing ${process.env.ORG_NAME}.
     </p>
     
     <p>
-    <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
+    ${req.protocol}://${HOST}
+    YY
     </p>
-    </body></html>"`
+   
+    <p>
+    ${YY} ${process.env.ORG_NAME}, Ensuring the best of service.
+    </p>
+
+    </body></html>`;
 
 
 

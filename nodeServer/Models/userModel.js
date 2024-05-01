@@ -118,7 +118,7 @@ userSchema.methods.createResetPasswordToken = function(){
 }
 
 userSchema.methods.createEmailVerificationToken = function(){
-    const verifyToken = crypto.randomBytes(25).toString('hex')+' '+this.email
+    const verifyToken = crypto.randomBytes(25).toString('hex')+this.email
     this.emailVerificationToken = crypto.createHash('sha256').update(verifyToken).digest('hex') // prepares the user document with the encrypted password rest token
     this.emailVerificationTokenExp = Date.now() + (10 * 60 * 1000) // prepares the user document with the encrypted password rest token expiration time
     // we will save this info in the authController

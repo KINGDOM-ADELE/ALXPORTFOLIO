@@ -100,18 +100,20 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     Hi ${newUser.firstName} ${newUser.middleName} ${newUser.lastName},</p> 
     
     We have received your new account.
+    
     <p>
-    Please use the link below to verify your email:
+    Please click on 'verify email' below to verify your email.
+    </p>
+    
+    <table align='center' ><tr><td  align='center' style='color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'>
+    <a href='${verifyUrl}'><b>VERIFY EMAIL</b></a>
+    </td></tr></table>
+
+    <p>
+    You can also use the link below to verify your email:
     </p>
     
     ${verifyUrl}
-    
-    <p>
-    You can also click on 'verify email' below to verify your email.
-    </p>
-    
-    <table align='center' ><tr><td  align='center' style='color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'><a href='${verifyUrl}'><b>VERIFY EMAIL</b></a>
-        </td></tr></table>
     
     <p>
     For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
@@ -358,8 +360,9 @@ exports.forgotpassword = asyncErrorHandler(async (req, res, next) => {
     If you need to change your password, your RESET code is:
     </p>
     
-    <table align='center' ><tr><td  align='center' style='	color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'><b>${resetToken}</b>
-        </td></tr></table>
+    <table align='center' ><tr><td  align='center' style='	color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'>
+    <b>${resetToken}</b>
+    </td></tr></table>
     
     <p>
      This code expires after 10 munites from the request time.
@@ -367,8 +370,9 @@ exports.forgotpassword = asyncErrorHandler(async (req, res, next) => {
     You can also click on 'reset password' below to change your password.
     </p>
     
-    <table align='center' ><tr><td  align='center' style='	color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'><a href='/${resetUrl}'><b>RESET PASSWORD</b></a>
-        </td></tr></table>
+    <table align='center' ><tr><td  align='center' style='	color:#FFF; cursor:pointer; padding: 10px 18px; border-radius:10px; background-color:#23BE30;'>
+    <a href='/${resetUrl}'><b>RESET PASSWORD</b></a>
+    </td></tr></table>
     
     <p>
     For information on MRsoft International visit <a href='${req.protocol}://${HOST}'>${req.protocol}://${HOST}</a>
@@ -623,10 +627,10 @@ exports.searchUsers = asyncErrorHandler(async (req, res, next) => {
 
     let features = new ApiFeatures(User.find( 
         {$or: [ 
-        { email: { $regex: "^"+req.query.search }}, 
-        { firstName: { $regex: "^"+req.query.search }},
-        { middleName: { $regex: "^"+req.query.search }}, 
-        { lastName: { $regex: "^"+req.query.search }}
+        { email: { $regex: ".*"+req.query.search+".*" }}, 
+        { firstName: { $regex: ".*"+req.query.search+".*"  }},
+        { middleName: { $regex: ".*"+req.query.search+".*"  }}, 
+        { lastName: { $regex: ".*"+req.query.search+".*"  }}
         ]}), req.query).limitfields().paginate()
      
  
